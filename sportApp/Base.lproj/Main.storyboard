@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="sportApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yud-GL-YXr">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="301"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9Z-gB-zYJ">
+                                        <rect key="frame" x="247" y="119" width="106" height="64"/>
+                                        <color key="backgroundColor" red="0.72871857818809826" green="0.83066047261328746" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="録音">
+                                            <color key="titleShadowColor" red="0.096436838620000007" green="0.01386623987" blue="0.01139499871" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="aSp-qy-6lr" kind="show" id="zGU-Nw-u94"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.46635199960000001" green="0.3945430358" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="n9Z-gB-zYJ" firstAttribute="centerX" secondItem="Yud-GL-YXr" secondAttribute="centerX" id="fKm-sN-1FV"/>
+                                    <constraint firstItem="n9Z-gB-zYJ" firstAttribute="centerY" secondItem="Yud-GL-YXr" secondAttribute="centerY" id="qxA-UK-QHU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fci-G1-9Lx">
+                                <rect key="frame" x="0.0" y="299" width="600" height="301"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B24-5m-SZV">
+                                        <rect key="frame" x="247" y="119" width="106" height="64"/>
+                                        <color key="backgroundColor" red="0.72871857819999997" green="0.83066047259999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="106" id="C3M-SX-o1d"/>
+                                            <constraint firstAttribute="height" constant="64" id="p4v-CG-SH0"/>
+                                        </constraints>
+                                        <state key="normal" title="聴く">
+                                            <color key="titleShadowColor" red="0.096436838620000007" green="0.01386623987" blue="0.01139499871" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="rIA-eK-I6a" kind="show" id="wL9-4w-JxF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.8220510955" blue="0.29953652250000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="B24-5m-SZV" firstAttribute="centerY" secondItem="fci-G1-9Lx" secondAttribute="centerY" id="c8h-Yc-yG3"/>
+                                    <constraint firstItem="B24-5m-SZV" firstAttribute="centerX" secondItem="fci-G1-9Lx" secondAttribute="centerX" id="sKK-qE-r8t"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.46635199961851004" green="0.39454303580930516" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fci-G1-9Lx" secondAttribute="trailing" id="94I-u8-Sub"/>
+                            <constraint firstItem="Yud-GL-YXr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CRB-rE-lVx"/>
+                            <constraint firstItem="Yud-GL-YXr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="E2B-hC-Uqz"/>
+                            <constraint firstAttribute="trailing" secondItem="Yud-GL-YXr" secondAttribute="trailing" id="Gnc-Jb-ccT"/>
+                            <constraint firstItem="fci-G1-9Lx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="279" id="UjA-Hy-Ne2"/>
+                            <constraint firstItem="fci-G1-9Lx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YIb-sV-8jf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fci-G1-9Lx" secondAttribute="bottom" id="feD-dD-bKQ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fci-G1-9Lx" secondAttribute="bottom" id="q93-tU-bGn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="63" y="305"/>
+        </scene>
+        <!--Recorde View Controller-->
+        <scene sceneID="54l-IL-fT7">
+            <objects>
+                <viewController id="aSp-qy-6lr" customClass="RecordeViewController" customModule="sportApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="75y-FG-Uu2"/>
+                        <viewControllerLayoutGuide type="bottom" id="X4Q-Cv-y3U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Drh-L5-ScS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="録音中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxv-ER-sIP">
+                                <rect key="frame" x="266" y="289" width="84" height="56"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mxv-ER-sIP" firstAttribute="centerX" secondItem="Drh-L5-ScS" secondAttribute="centerX" id="8uZ-Tj-Lru"/>
+                            <constraint firstItem="Mxv-ER-sIP" firstAttribute="centerY" secondItem="Drh-L5-ScS" secondAttribute="centerY" id="m4X-GE-u1x"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5vX-ki-4ZV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xmo-AJ-xLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856" y="-119"/>
+        </scene>
+        <!--Listening View Controller-->
+        <scene sceneID="laH-Xf-WeC">
+            <objects>
+                <viewController id="rIA-eK-I6a" customClass="ListeningViewController" customModule="sportApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jqX-xM-L1B"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZHa-vd-lvI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="giC-tz-WBm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="聞こえるよ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVS-ZE-JtK">
+                                <rect key="frame" x="231" y="289" width="136" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bVS-ZE-JtK" firstAttribute="centerY" secondItem="giC-tz-WBm" secondAttribute="centerY" id="4NL-LU-Sc0"/>
+                            <constraint firstItem="bVS-ZE-JtK" firstAttribute="centerX" secondItem="giC-tz-WBm" secondAttribute="centerX" id="I91-Cr-alA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="g3a-xP-El0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CjM-SX-ATG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="901" y="827"/>
+        </scene>
+    </scenes>
+</document>

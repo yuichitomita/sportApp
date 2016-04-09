@@ -1,0 +1,10 @@
+PODS:
+  - lf (0.1.3)
+
+DEPENDENCIES:
+  - lf
+
+SPEC CHECKSUMS:
+  lf: cc6d0518e5aba577aae75b5975fd556a65234332
+
+COCOAPODS: 0.39.0
