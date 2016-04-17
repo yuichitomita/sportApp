@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func startRecord(sender: AnyObject) {
+        print("録音")
         
     }
 
