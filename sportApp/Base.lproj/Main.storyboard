@@ -17,12 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yud-GL-YXr">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yud-GL-YXr">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="301"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9Z-gB-zYJ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9Z-gB-zYJ">
                                         <rect key="frame" x="247" y="119" width="106" height="64"/>
                                         <color key="backgroundColor" red="0.72871857818809826" green="0.83066047261328746" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="106" id="veO-vX-pWW"/>
+                                            <constraint firstAttribute="height" constant="64" id="x5c-YU-dtM"/>
+                                        </constraints>
                                         <state key="normal" title="録音">
                                             <color key="titleShadowColor" red="0.096436838620000007" green="0.01386623987" blue="0.01139499871" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -72,6 +76,7 @@
                             <constraint firstItem="Yud-GL-YXr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="E2B-hC-Uqz"/>
                             <constraint firstAttribute="trailing" secondItem="Yud-GL-YXr" secondAttribute="trailing" id="Gnc-Jb-ccT"/>
                             <constraint firstItem="fci-G1-9Lx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="279" id="UjA-Hy-Ne2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yud-GL-YXr" secondAttribute="bottom" constant="299" id="WF5-fP-71Q"/>
                             <constraint firstItem="fci-G1-9Lx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YIb-sV-8jf"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fci-G1-9Lx" secondAttribute="bottom" id="feD-dD-bKQ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fci-G1-9Lx" secondAttribute="bottom" id="q93-tU-bGn"/>
