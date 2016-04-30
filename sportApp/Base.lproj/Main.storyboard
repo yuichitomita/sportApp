@@ -42,11 +42,11 @@
                                     <constraint firstItem="n9Z-gB-zYJ" firstAttribute="centerY" secondItem="Yud-GL-YXr" secondAttribute="centerY" id="qxA-UK-QHU"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fci-G1-9Lx">
-                                <rect key="frame" x="0.0" y="299" width="600" height="301"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fci-G1-9Lx">
+                                <rect key="frame" x="0.0" y="343" width="600" height="257"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B24-5m-SZV">
-                                        <rect key="frame" x="247" y="119" width="106" height="64"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B24-5m-SZV">
+                                        <rect key="frame" x="247" y="97" width="106" height="64"/>
                                         <color key="backgroundColor" red="0.72871857819999997" green="0.83066047259999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="106" id="C3M-SX-o1d"/>
