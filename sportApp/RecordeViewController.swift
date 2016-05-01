@@ -12,7 +12,7 @@ import lf
 
 struct Preference {
     static let defaultInstance:Preference = Preference()
-    var uri:String? = "rtmp://153.126.157.154/live/"
+    var uri:String? = "rtmp://153.126.157.154/live"
     var streamName:String? = "live"
 }
 
@@ -36,41 +36,21 @@ class RecordeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*
-        navigationItem.leftBarButtonItem =
-        UIBarButtonItem(title: "Preference", style: .Plain, target: self, action: "showPreference:")
-        sharedObject = RTMPSharedObject.getRemote("test", remotePath: Preference.defaultInstance.uri!, persistence: false)
-        */
-        
-        /*
-        httpStream = HTTPStream()
-        httpStream.attachScreen(ScreenCaptureSession())
-        httpStream.publish("hello")
-        httpService = HTTPService(domain: "", type: "_http._tcp", name: "lf", port: 8080)
-        httpService.startRunning()
-        httpService.addHTTPStream(httpStream)
-        */
-        
         rtmpStream = RTMPStream(rtmpConnection: rtmpConnection)
         rtmpStream.syncOrientation = true
         rtmpStream.attachAudio(AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeAudio))
-        // rtmpStream.attachCamera(AVMixer.deviceWithPosition(.Back))
-        // rtmpStream.attachScreen(ScreenCaptureSession())
+        //rtmpStream.attachCamera(AVMixer.deviceWithPosition(.Back))
+        //rtmpStream.attachScreen(ScreenCaptureSession())
         
         //rtmpStream.captureSettings = [
         //    "continuousAutofocus": true,
         //    "continuousExposure": true,
         //]
         
-        publishButton.addTarget(self, action: Selector("onClickPublish:"), forControlEvents: .TouchUpInside)
-        
+        publishButton.addTarget(self, action: #selector(RecordeViewController.onClickPublish(_:)), forControlEvents: .TouchUpInside)
         //view.addSubview(rtmpStream.view)
-        
-        
-        
         // videoBitrateSlider.value = Float(RTMPStream.defaultVideoBitrate) / 1024
         // audioBitrateSlider.value = Float(RTMPStream.defaultAudioBitrate) / 1024
-        
         view.addSubview(publishButton)
     }
     
@@ -85,37 +65,31 @@ class RecordeViewController: UIViewController {
         if (sender.selected) {
             UIApplication.sharedApplication().idleTimerDisabled = false
             rtmpConnection.close()
-            rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector: Selector("rtmpStatusHandler:"), observer: self)
+            rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(RecordeViewController.rtmpStatusHandler(_:)), observer: self)
             sender.setTitle("●", forState: .Normal)
         } else {
             UIApplication.sharedApplication().idleTimerDisabled = true
-            //rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:Selector("rtmpStatusHandler:"), observer: self)
+            rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(RecordeViewController.rtmpStatusHandler(_:)), observer: self)
             rtmpConnection.connect(Preference.defaultInstance.uri!)
-            
-            rtmpStream!.publish(Preference.defaultInstance.streamName!)
             //sharedObject!.connect(rtmpConnection)
-            
             sender.setTitle("■", forState: .Normal)
         }
         sender.selected = !sender.selected
     }
     
     func rtmpStatusHandler(notification:NSNotification) {
-        rtmpStream!.publish(Preference.defaultInstance.streamName!)
-        sharedObject!.connect(rtmpConnection)
         
-        /*
         let e:Event = Event.from(notification)
         if let data:ASObject = e.data as? ASObject , code:String = data["code"] as? String {
             switch code {
             case RTMPConnection.Code.ConnectSuccess.rawValue:
                 rtmpStream!.publish(Preference.defaultInstance.streamName!)
-                sharedObject!.connect(rtmpConnection)
+                // sharedObject!.connect(rtmpConnection) 
             default:
                 break
             }
         }
-        */
+        
     }
 }
 
