@@ -10,8 +10,8 @@ import UIKit
 import AVFoundation
 import lf
 
-struct Preference {
-    static let defaultInstance:Preference = Preference()
+struct RecordePreference {
+    static let defaultInstance:RecordePreference = RecordePreference()
     var uri:String? = "rtmp://153.126.157.154/live"
     var streamName:String? = "live"
 }
@@ -71,7 +71,7 @@ class RecordeViewController: UIViewController {
         } else {
             UIApplication.sharedApplication().idleTimerDisabled = true
             rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(RecordeViewController.rtmpStatusHandler(_:)), observer: self)
-            rtmpConnection.connect(Preference.defaultInstance.uri!)
+            rtmpConnection.connect(RecordePreference.defaultInstance.uri!)
             //sharedObject!.connect(rtmpConnection)
             sender.setTitle("■", forState: .Normal)
         }
@@ -84,7 +84,7 @@ class RecordeViewController: UIViewController {
         if let data:ASObject = e.data as? ASObject , code:String = data["code"] as? String {
             switch code {
             case RTMPConnection.Code.ConnectSuccess.rawValue:
-                rtmpStream!.publish(Preference.defaultInstance.streamName!)
+                rtmpStream!.publish(RecordePreference.defaultInstance.streamName!)
                 // sharedObject!.connect(rtmpConnection) 
             default:
                 break

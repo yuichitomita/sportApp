@@ -9,6 +9,12 @@
 import UIKit
 import lf
 
+struct ListeningPreference {
+    static let defaultInstance:ListeningPreference = ListeningPreference()
+    var uri:String? = "rtmp://153.126.157.154/live"
+    var streamName:String? = "live"
+}
+
 class ListeningViewController: UIViewController {
 
     var streamName:String? = "live"
@@ -30,10 +36,8 @@ class ListeningViewController: UIViewController {
         
         playButton.addTarget(self, action: #selector(ListeningViewController.onClickPlay(_:)), forControlEvents: .TouchUpInside)
         view.addSubview(playButton)
-
         rtmpStream = RTMPStream(rtmpConnection: rtmpConnection)
         rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
-        rtmpConnection.connect("rtmp://153.126.157.154/live")
         
     }
     
@@ -65,7 +69,7 @@ class ListeningViewController: UIViewController {
         } else {
             UIApplication.sharedApplication().idleTimerDisabled = true
             rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
-            rtmpConnection.connect(Preference.defaultInstance.uri!)
+            rtmpConnection.connect(ListeningPreference.defaultInstance.uri!)
             //sharedObject!.connect(rtmpConnection)
             sender.setTitle("■", forState: .Normal)
         }
