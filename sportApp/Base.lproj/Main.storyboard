@@ -99,19 +99,7 @@
                     <view key="view" contentMode="scaleToFill" id="Drh-L5-ScS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="録音中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mxv-ER-sIP">
-                                <rect key="frame" x="258" y="283" width="84" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Mxv-ER-sIP" firstAttribute="centerX" secondItem="Drh-L5-ScS" secondAttribute="centerX" id="8uZ-Tj-Lru"/>
-                            <constraint firstItem="Mxv-ER-sIP" firstAttribute="centerY" secondItem="Drh-L5-ScS" secondAttribute="centerY" id="m4X-GE-u1x"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5vX-ki-4ZV"/>
                 </viewController>
@@ -130,19 +118,7 @@
                     <view key="view" contentMode="scaleToFill" id="giC-tz-WBm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="聞こえるよ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVS-ZE-JtK">
-                                <rect key="frame" x="235" y="284" width="130" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="bVS-ZE-JtK" firstAttribute="centerY" secondItem="giC-tz-WBm" secondAttribute="centerY" id="4NL-LU-Sc0"/>
-                            <constraint firstItem="bVS-ZE-JtK" firstAttribute="centerX" secondItem="giC-tz-WBm" secondAttribute="centerX" id="I91-Cr-alA"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g3a-xP-El0"/>
                 </viewController>

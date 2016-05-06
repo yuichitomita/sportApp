@@ -26,6 +26,7 @@ class RecordeViewController: UIViewController {
         let button:UIButton = UIButton()
         button.backgroundColor = UIColor.blueColor()
         button.setTitle("●", forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(30)
         button.layer.masksToBounds = true
         return button
     }()
@@ -57,7 +58,7 @@ class RecordeViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        publishButton.frame = CGRect(x: view.bounds.width - 44 - 20, y: view.bounds.height - 44 - 20, width: 44, height: 44)
+        publishButton.frame = CGRect(x: view.bounds.width / 2 - 30 , y: view.bounds.height / 2 - 30 , width: 60, height: 60)
         rtmpStream.view.frame = view.frame
     }
     

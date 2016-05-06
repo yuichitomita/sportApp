@@ -7,44 +7,70 @@
 //
 
 import UIKit
+import lf
 
-class ListeningViewController: UIViewController ,UIWebViewDelegate {
+class ListeningViewController: UIViewController {
 
+    var streamName:String? = "live"
+    var rtmpConnection:RTMPConnection = RTMPConnection()
+    var rtmpStream:RTMPStream!
+    
+    var playButton:UIButton = {
+        let button:UIButton = UIButton()
+        button.backgroundColor = UIColor.blueColor()
+        button.setTitle("▶︎", forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(30)
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //画面一杯にWebを表示
-        let myWebView : UIWebView = UIWebView()
-        myWebView.delegate = self
-        myWebView.frame = self.view.bounds
-        self.view.addSubview(myWebView)
-        let url: NSURL = NSURL(string: "http://153.126.157.154:83/index2.html")!
-        let request: NSURLRequest = NSURLRequest(URL: url)
-        myWebView.loadRequest(request)
-    }
-    //ページが読み終わったときに呼ばれる関数
-    func webViewDidFinishLoad(webView: UIWebView) {
-        print("ページ読み込み完了しました！")
-    }
-    //ページを読み始めた時に呼ばれる関数
-    func webViewDidStartLoad(webView: UIWebView) {
-        print("ページ読み込み開始しました！")
+        playButton.addTarget(self, action: #selector(ListeningViewController.onClickPlay(_:)), forControlEvents: .TouchUpInside)
+        view.addSubview(playButton)
+
+        rtmpStream = RTMPStream(rtmpConnection: rtmpConnection)
+        rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
+        rtmpConnection.connect("rtmp://153.126.157.154/live")
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        playButton.frame = CGRect(x: view.bounds.width / 2 - 30 , y: view.bounds.height / 2 - 30 , width: 60, height: 60)
+        rtmpStream.view.frame = view.frame
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func rtmpStatusHandler(notification:NSNotification) {
+        let e:Event = Event.from(notification)
+        if let data:ASObject = e.data as? ASObject , code:String = data["code"] as? String {
+            switch code {
+            case RTMPConnection.Code.ConnectSuccess.rawValue:
+                rtmpStream.play(streamName)
+            default:
+                break
+            }
+        }
     }
-    */
+    
+    func onClickPlay(sender:UIButton) {
+        if (sender.selected) {
+            UIApplication.sharedApplication().idleTimerDisabled = false
+            rtmpConnection.close()
+            rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
+            sender.setTitle("▶︎", forState: .Normal)
+        } else {
+            UIApplication.sharedApplication().idleTimerDisabled = true
+            rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
+            rtmpConnection.connect(Preference.defaultInstance.uri!)
+            //sharedObject!.connect(rtmpConnection)
+            sender.setTitle("■", forState: .Normal)
+        }
+        sender.selected = !sender.selected
+    }
+
 
 }
