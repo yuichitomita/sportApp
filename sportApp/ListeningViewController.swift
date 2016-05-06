@@ -48,6 +48,16 @@ class ListeningViewController: UIViewController {
         rtmpStream.view.frame = view.frame
     }
     
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            if(rtmpConnection.connected) {
+                rtmpConnection.close()
+                rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
+            }
+        }
+    }
+
     func rtmpStatusHandler(notification:NSNotification) {
         let e:Event = Event.from(notification)
         if let data:ASObject = e.data as? ASObject , code:String = data["code"] as? String {
@@ -76,5 +86,6 @@ class ListeningViewController: UIViewController {
         sender.selected = !sender.selected
     }
 
+    
 
 }

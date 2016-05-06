@@ -49,6 +49,7 @@ class RecordeViewController: UIViewController {
         //]
         
         publishButton.addTarget(self, action: #selector(RecordeViewController.onClickPublish(_:)), forControlEvents: .TouchUpInside)
+        self.navigationController?.navigationItem.backBarButtonItem
         //view.addSubview(rtmpStream.view)
         // videoBitrateSlider.value = Float(RTMPStream.defaultVideoBitrate) / 1024
         // audioBitrateSlider.value = Float(RTMPStream.defaultAudioBitrate) / 1024
@@ -60,6 +61,16 @@ class RecordeViewController: UIViewController {
 
         publishButton.frame = CGRect(x: view.bounds.width / 2 - 30 , y: view.bounds.height / 2 - 30 , width: 60, height: 60)
         rtmpStream.view.frame = view.frame
+    }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            if(rtmpConnection.connected) {
+                rtmpConnection.close()
+                rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(RecordeViewController.rtmpStatusHandler(_:)), observer: self)
+            }
+        }
     }
     
     func onClickPublish(sender:UIButton) {
@@ -90,7 +101,13 @@ class RecordeViewController: UIViewController {
                 break
             }
         }
-        
+    }
+    
+    func rmconnection() {
+        if(rtmpConnection.connected) {
+        rtmpConnection.close()
+        rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(RecordeViewController.rtmpStatusHandler(_:)), observer: self)
+        }
     }
 }
 
