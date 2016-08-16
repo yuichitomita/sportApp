@@ -13,15 +13,24 @@ class ViewController: UIViewController {
     
     var height:CGFloat!
     var width:CGFloat!
+    
     //Totalのページ数
     let pNum: Int = 4
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        self.title = "スポーツ観戦"
+        self.view.backgroundColor = UIColor.greenColor()
         
+        let menuButton : UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu"),
+                                                           style: UIBarButtonItemStyle.Plain,
+                                                           target: self,
+                                                           action: #selector(self.tapBarButtonItem(_:)))
+
+        self.navigationItem.setLeftBarButtonItems([menuButton], animated: true)
+        
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
         
         width = screenSize.width
         let img1 = UIImage(named: "1.jpg")
@@ -46,9 +55,7 @@ class ViewController: UIViewController {
             self.scrollView.addSubview(imageView)
             
         }
-        
         setupScrollImages()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,7 +64,6 @@ class ViewController: UIViewController {
     }
     
     func setupScrollImages() {
-        
         //ダミー画像
         let imageDummy = UIImage(named: "1.jpg")!
         var imgView = UIImageView(image: imageDummy)
@@ -66,6 +72,7 @@ class ViewController: UIViewController {
         //描画開始のx,y 位置
         var px:CGFloat = 0.0
         let py:CGFloat = 100.0
+        let margin:CGFloat = 32.0
         
         for i in 0 ..< subviews.count {
             imgView = subviews[i] as! UIImageView
@@ -74,18 +81,21 @@ class ViewController: UIViewController {
                 viewFrame.origin = CGPointMake(px, py)
                 imgView.frame = viewFrame
                 
-                px += (width)
+                px += (width) + margin
             }
         }
         
         //UIScrollViewのコンテンツサイズを画像のtotalサイズに合わせる
-        let nWidth:CGFloat = width * CGFloat(pNum)
+        var nWidth:CGFloat = width * CGFloat(pNum)
+        nWidth += (margin * CGFloat(pNum))
         scrollView.contentSize = CGSizeMake(nWidth, height)
-        
     }
     
-    
-    
-    
+    //ボタンが押されると呼ばれる処理
+    func tapBarButtonItem(sender: AnyObject?) {
+        //メニュー画面があいたり、ひらいたいり
+        self.evo_drawerController?.toggleDrawerSide(.Left, animated: true, completion: nil)
+        
+    }
 }
 
