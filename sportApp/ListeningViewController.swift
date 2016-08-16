@@ -2,90 +2,57 @@
 //  ListeningViewController.swift
 //  sportApp
 //
-//  Created by Tomi on 2016/04/09.
+//  Created by Tomi on 2016/08/16.
 //  Copyright © 2016年 slj. All rights reserved.
 //
 
 import UIKit
-import lf
 
-struct ListeningPreference {
-    static let defaultInstance:ListeningPreference = ListeningPreference()
-    var uri:String? = "rtmp://153.126.157.154/live"
-    var streamName:String? = "live"
-}
+class ListeningViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource{
 
-class ListeningViewController: UIViewController {
-
-    var streamName:String? = "live"
-    var rtmpConnection:RTMPConnection = RTMPConnection()
-    var rtmpStream:RTMPStream!
-    
-    var playButton:UIButton = {
-        let button:UIButton = UIButton()
-        button.backgroundColor = UIColor.blueColor()
-        button.setTitle("▶︎", forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(30)
-        button.layer.masksToBounds = true
-        return button
-    }()
-    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        playButton.addTarget(self, action: #selector(ListeningViewController.onClickPlay(_:)), forControlEvents: .TouchUpInside)
-        view.addSubview(playButton)
-        rtmpStream = RTMPStream(rtmpConnection: rtmpConnection)
-        rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
+        tableView.delegate = self
+        tableView.dataSource = self
         
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+        // 背景画像
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "sunset")?.drawInRect(self.view.bounds)
         
-        playButton.frame = CGRect(x: view.bounds.width / 2 - 30 , y: view.bounds.height / 2 - 30 , width: 60, height: 60)
-        rtmpStream.view.frame = view.frame
-    }
-    
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        super.willMoveToParentViewController(parent)
-        if parent == nil {
-            if(rtmpConnection.connected) {
-                rtmpConnection.close()
-                rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
-            }
-        }
+        let image: UIImage! = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        
+        self.view.backgroundColor = UIColor(patternImage: image)
+        // Do any additional setup after loading the view.
     }
 
-    func rtmpStatusHandler(notification:NSNotification) {
-        let e:Event = Event.from(notification)
-        if let data:ASObject = e.data as? ASObject , code:String = data["code"] as? String {
-            switch code {
-            case RTMPConnection.Code.ConnectSuccess.rawValue:
-                rtmpStream.play(streamName)
-            default:
-                break
-            }
-        }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    func onClickPlay(sender:UIButton) {
-        if (sender.selected) {
-            UIApplication.sharedApplication().idleTimerDisabled = false
-            rtmpConnection.close()
-            rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
-            sender.setTitle("▶︎", forState: .Normal)
-        } else {
-            UIApplication.sharedApplication().idleTimerDisabled = true
-            rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(ListeningViewController.rtmpStatusHandler(_:)), observer: self)
-            rtmpConnection.connect(ListeningPreference.defaultInstance.uri!)
-            //sharedObject!.connect(rtmpConnection)
-            sender.setTitle("■", forState: .Normal)
-        }
-        sender.selected = !sender.selected
+    /// セルの個数を指定するデリゲートメソッド（必須）
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
-
+    
+    /// セルに値を設定するデータソースメソッド（必須）
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("comment")
+        //cell?.imageView?.image = UIImage(named: "megane")
+        cell?.imageView?.layer.cornerRadius = (cell?.imageView?.frame.size.width)! * 0.5;
+        //cell?.imageView?.clipsToBounds = true
+        
+        return cell!
+    }
+    
+    /// セルが選択された時に呼ばれるデリゲートメソッド
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {}
     
 
 }
