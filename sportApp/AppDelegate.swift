@@ -8,15 +8,38 @@
 
 import UIKit
 import CoreData
+import DrawerController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var drawerController: DrawerController!
+    var navigationController: UINavigationController!
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        application.applicationSupportsShakeToEdit = true
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let centerViewController: ViewController! = storyboard.instantiateViewControllerWithIdentifier("top") as! ViewController
+        navigationController = UINavigationController(rootViewController: centerViewController)
+        let drawerViewController: DrowerViewController = storyboard.instantiateViewControllerWithIdentifier("leftMenuVC") as! DrowerViewController
+        let drawerController: DrawerController! = DrawerController(centerViewController: navigationController, leftDrawerViewController: drawerViewController)
+        drawerController.showsShadows = true // 影付き
+        drawerController.restorationIdentifier = "Drawer"
+        //デバイスごとのサイズを表示
+        let myBoundsSize: CGSize = UIScreen.mainScreen().bounds.size
+        
+        //メニューの開き幅を設定
+        let boundWidth = (myBoundsSize.width * 0.80)
+        drawerController.maximumLeftDrawerWidth = boundWidth
+        drawerController.openDrawerGestureModeMask = .All // タッチ操作を全て受け付ける
+        drawerController.closeDrawerGestureModeMask = .All
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = drawerController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
