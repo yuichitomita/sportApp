@@ -149,7 +149,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="のんびりタイム" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSC-m3-aTE">
                                                     <rect key="frame" x="84" y="17" width="198" height="21"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -158,7 +158,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28T-yd-yRS">
                                                     <rect key="frame" x="110" y="75" width="17" height="23"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -167,13 +167,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2N-Nx-8Kv">
                                                     <rect key="frame" x="163" y="77" width="10" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="pokemonマスター" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pr-d0-uKy">
-                                                    <rect key="frame" x="84" y="48" width="139" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -188,6 +182,12 @@
                                                         <segue destination="34g-ci-PE7" kind="show" id="Epz-dm-hfZ"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="pokemonマスター" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pr-d0-uKy">
+                                                    <rect key="frame" x="84" y="46" width="139" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ULt-BV-rFT" firstAttribute="trailing" secondItem="S5j-bk-7B5" secondAttribute="trailingMargin" id="TPb-7S-VUt"/>
@@ -340,10 +340,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="056-Rn-u7B" firstAttribute="top" secondItem="ZZp-CL-SCA" secondAttribute="bottom" constant="12" id="6Ub-Vl-zDS"/>
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="trailing" secondItem="0GK-l9-6pi" secondAttribute="trailing" id="7RH-GP-l0d"/>
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="centerX" secondItem="056-Rn-u7B" secondAttribute="centerX" id="AYn-p3-cQg"/>
                             <constraint firstAttribute="trailing" secondItem="cQ9-Jb-Z0y" secondAttribute="trailing" id="Ftf-8S-azw"/>
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="leading" secondItem="0GK-l9-6pi" secondAttribute="leading" id="Gdg-IK-Tte"/>
+                            <constraint firstItem="0GK-l9-6pi" firstAttribute="top" secondItem="056-Rn-u7B" secondAttribute="bottom" constant="8" id="GyZ-Ot-0Z5"/>
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="centerX" secondItem="ZZp-CL-SCA" secondAttribute="centerX" id="HsX-Od-OQo"/>
                             <constraint firstItem="ZZp-CL-SCA" firstAttribute="leading" secondItem="Oi5-g6-wIB" secondAttribute="trailing" constant="8" symbolic="YES" id="N6A-LH-5UY"/>
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="leading" secondItem="v8c-h6-4Of" secondAttribute="leading" id="UIw-LL-1ai"/>
@@ -362,6 +364,7 @@
                             <constraint firstItem="0GK-l9-6pi" firstAttribute="top" secondItem="v8c-h6-4Of" secondAttribute="top" constant="186" id="vxG-vA-Vbp"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="tableView" destination="0GK-l9-6pi" id="cM0-fb-T9n"/>
