@@ -137,7 +137,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="cnc-UZ-CZd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="cnc-UZ-CZd">
                                         <rect key="frame" x="0.0" y="28" width="600" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cnc-UZ-CZd" id="S5j-bk-7B5">
@@ -226,11 +226,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0GK-l9-6pi">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0GK-l9-6pi">
                                 <rect key="frame" x="0.0" y="186" width="414" height="506"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" rowHeight="80" id="L1s-pR-iUv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="comment" rowHeight="80" id="L1s-pR-iUv">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L1s-pR-iUv" id="og2-uQ-ggh">
@@ -330,16 +330,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="停止"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaP-0g-U0U">
-                                <rect key="frame" x="286" y="28" width="42" height="19"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGF-Iw-5Dq">
+                                <rect key="frame" x="286" y="27" width="42" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="番組表">
-                                    <color key="titleColor" red="0.058457312050000002" green="0.05743650392" blue="0.038680493580000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <state key="normal" title="番組表"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WGF-Iw-5Dq" firstAttribute="leading" secondItem="ZZp-CL-SCA" secondAttribute="trailing" constant="8" id="5DS-Ug-f42"/>
                             <constraint firstItem="056-Rn-u7B" firstAttribute="top" secondItem="ZZp-CL-SCA" secondAttribute="bottom" constant="12" id="6Ub-Vl-zDS"/>
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="trailing" secondItem="0GK-l9-6pi" secondAttribute="trailing" id="7RH-GP-l0d"/>
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="centerX" secondItem="056-Rn-u7B" secondAttribute="centerX" id="AYn-p3-cQg"/>
@@ -355,13 +354,11 @@
                             <constraint firstItem="cQ9-Jb-Z0y" firstAttribute="top" secondItem="0GK-l9-6pi" secondAttribute="bottom" id="ZdK-Av-9M7"/>
                             <constraint firstItem="565-wL-u1O" firstAttribute="top" secondItem="cQ9-Jb-Z0y" secondAttribute="bottom" id="ahz-s3-ePq"/>
                             <constraint firstItem="0GK-l9-6pi" firstAttribute="top" secondItem="056-Rn-u7B" secondAttribute="bottom" constant="8" symbolic="YES" id="bYr-Y0-vah"/>
-                            <constraint firstItem="ZZp-CL-SCA" firstAttribute="top" secondItem="kaP-0g-U0U" secondAttribute="top" id="bl4-L1-KlQ"/>
-                            <constraint firstItem="kaP-0g-U0U" firstAttribute="leading" secondItem="ZZp-CL-SCA" secondAttribute="trailing" constant="8" symbolic="YES" id="cao-ce-P4X"/>
                             <constraint firstItem="4hy-vk-Xg8" firstAttribute="leading" secondItem="ZZp-CL-SCA" secondAttribute="trailing" constant="8" symbolic="YES" id="g1g-Yo-2S5"/>
-                            <constraint firstItem="Oi5-g6-wIB" firstAttribute="bottom" secondItem="kaP-0g-U0U" secondAttribute="bottom" id="mOU-zU-gqX"/>
                             <constraint firstItem="Oi5-g6-wIB" firstAttribute="top" secondItem="RqC-se-jdC" secondAttribute="bottom" constant="10" id="nYH-0v-ITA"/>
                             <constraint firstItem="ZZp-CL-SCA" firstAttribute="bottom" secondItem="4hy-vk-Xg8" secondAttribute="bottom" id="vpT-kb-8DZ"/>
                             <constraint firstItem="0GK-l9-6pi" firstAttribute="top" secondItem="v8c-h6-4Of" secondAttribute="top" constant="186" id="vxG-vA-Vbp"/>
+                            <constraint firstItem="WGF-Iw-5Dq" firstAttribute="top" secondItem="RqC-se-jdC" secondAttribute="bottom" constant="7" id="zPi-Jo-gMe"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
