@@ -8,16 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		4B511305A77E55E857ACEE84 /* Pods_sportApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 416303987058649A48DBA9A3 /* Pods_sportApp.framework */; };
+		E611BC9F1D9010F400DED4D6 /* ProgramInfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E611BC9E1D9010F400DED4D6 /* ProgramInfoModalViewController.swift */; };
+		E65D58E21D5C93000062BBC8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D58E11D5C93000062BBC8 /* BaseViewController.swift */; };
+		E65D58E81D5CA9F30062BBC8 /* ListLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D58E71D5CA9F30062BBC8 /* ListLViewController.swift */; };
 		E6CE189A1CB90E90005A4C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18991CB90E90005A4C42 /* AppDelegate.swift */; };
-		E6CE189C1CB90E90005A4C42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE189B1CB90E90005A4C42 /* ViewController.swift */; };
+		E6CE189C1CB90E90005A4C42 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE189B1CB90E90005A4C42 /* TopViewController.swift */; };
 		E6CE189F1CB90E90005A4C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6CE189D1CB90E90005A4C42 /* Main.storyboard */; };
 		E6CE18A21CB90E90005A4C42 /* sportApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18A01CB90E90005A4C42 /* sportApp.xcdatamodeld */; };
 		E6CE18A41CB90E90005A4C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6CE18A31CB90E90005A4C42 /* Assets.xcassets */; };
 		E6CE18A71CB90E90005A4C42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6CE18A51CB90E90005A4C42 /* LaunchScreen.storyboard */; };
-		E6CE18B21CB90E90005A4C42 /* sportAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18B11CB90E90005A4C42 /* sportAppTests.swift */; };
-		E6CE18BD1CB90E90005A4C42 /* sportAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18BC1CB90E90005A4C42 /* sportAppUITests.swift */; };
-		E6CE18CC1CB91F20005A4C42 /* RecordeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18CA1CB91F20005A4C42 /* RecordeViewController.swift */; };
-		E6CE18CF1CB92320005A4C42 /* ListeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18CE1CB92320005A4C42 /* ListeningViewController.swift */; };
+		E6E58A561D62AFE9002309D5 /* ListeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E58A551D62AFE9002309D5 /* ListeningViewController.swift */; };
+		E6FCA5DA1DCB9A3D00E8ED4C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCA5D91DCB9A3D00E8ED4C /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,24 +40,25 @@
 
 /* Begin PBXFileReference section */
 		416303987058649A48DBA9A3 /* Pods_sportApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sportApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8C8282DB0DAE3B231A7F45 /* Pods_sportAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sportAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		633187D9F01DD39148C0D026 /* Pods_sportAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sportAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66631CB9CD9A12674B4C7E94 /* Pods-sportApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sportApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sportApp/Pods-sportApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9FE486B3548EFAB1D14077E1 /* Pods-sportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sportApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-sportApp/Pods-sportApp.release.xcconfig"; sourceTree = "<group>"; };
+		E611BC9E1D9010F400DED4D6 /* ProgramInfoModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramInfoModalViewController.swift; sourceTree = "<group>"; };
+		E65D58E11D5C93000062BBC8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		E65D58E71D5CA9F30062BBC8 /* ListLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListLViewController.swift; sourceTree = "<group>"; };
 		E6CE18961CB90E8F005A4C42 /* sportApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sportApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6CE18991CB90E90005A4C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E6CE189B1CB90E90005A4C42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E6CE189B1CB90E90005A4C42 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		E6CE189E1CB90E90005A4C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6CE18A11CB90E90005A4C42 /* sportApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sportApp.xcdatamodel; sourceTree = "<group>"; };
 		E6CE18A31CB90E90005A4C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6CE18A61CB90E90005A4C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6CE18A81CB90E90005A4C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6CE18AD1CB90E90005A4C42 /* sportAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sportAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6CE18B11CB90E90005A4C42 /* sportAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sportAppTests.swift; sourceTree = "<group>"; };
-		E6CE18B31CB90E90005A4C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6CE18B81CB90E90005A4C42 /* sportAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sportAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6CE18BC1CB90E90005A4C42 /* sportAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sportAppUITests.swift; sourceTree = "<group>"; };
-		E6CE18BE1CB90E91005A4C42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6CE18CA1CB91F20005A4C42 /* RecordeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RecordeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		E6CE18CE1CB92320005A4C42 /* ListeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeningViewController.swift; sourceTree = "<group>"; };
+		E6E58A551D62AFE9002309D5 /* ListeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeningViewController.swift; sourceTree = "<group>"; };
+		E6FCA5D91DCB9A3D00E8ED4C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				416303987058649A48DBA9A3 /* Pods_sportApp.framework */,
+				633187D9F01DD39148C0D026 /* Pods_sportAppTests.framework */,
+				4A8C8282DB0DAE3B231A7F45 /* Pods_sportAppUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -106,8 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				E6CE18981CB90E90005A4C42 /* sportApp */,
-				E6CE18B01CB90E90005A4C42 /* sportAppTests */,
-				E6CE18BB1CB90E90005A4C42 /* sportAppUITests */,
 				E6CE18971CB90E8F005A4C42 /* Products */,
 				60367B5C9C22B341E9752B7D /* Pods */,
 				0A3039B02FDFC6D9C5B41165 /* Frameworks */,
@@ -128,34 +130,19 @@
 			isa = PBXGroup;
 			children = (
 				E6CE18991CB90E90005A4C42 /* AppDelegate.swift */,
-				E6CE189B1CB90E90005A4C42 /* ViewController.swift */,
-				E6CE18CA1CB91F20005A4C42 /* RecordeViewController.swift */,
-				E6CE18CE1CB92320005A4C42 /* ListeningViewController.swift */,
+				E65D58E71D5CA9F30062BBC8 /* ListLViewController.swift */,
+				E6CE189B1CB90E90005A4C42 /* TopViewController.swift */,
+				E65D58E11D5C93000062BBC8 /* BaseViewController.swift */,
 				E6CE189D1CB90E90005A4C42 /* Main.storyboard */,
 				E6CE18A31CB90E90005A4C42 /* Assets.xcassets */,
 				E6CE18A51CB90E90005A4C42 /* LaunchScreen.storyboard */,
 				E6CE18A81CB90E90005A4C42 /* Info.plist */,
 				E6CE18A01CB90E90005A4C42 /* sportApp.xcdatamodeld */,
+				E6E58A551D62AFE9002309D5 /* ListeningViewController.swift */,
+				E611BC9E1D9010F400DED4D6 /* ProgramInfoModalViewController.swift */,
+				E6FCA5D91DCB9A3D00E8ED4C /* MenuViewController.swift */,
 			);
 			path = sportApp;
-			sourceTree = "<group>";
-		};
-		E6CE18B01CB90E90005A4C42 /* sportAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				E6CE18B11CB90E90005A4C42 /* sportAppTests.swift */,
-				E6CE18B31CB90E90005A4C42 /* Info.plist */,
-			);
-			path = sportAppTests;
-			sourceTree = "<group>";
-		};
-		E6CE18BB1CB90E90005A4C42 /* sportAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E6CE18BC1CB90E90005A4C42 /* sportAppUITests.swift */,
-				E6CE18BE1CB90E91005A4C42 /* Info.plist */,
-			);
-			path = sportAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,12 +152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6CE18C11CB90E91005A4C42 /* Build configuration list for PBXNativeTarget "sportApp" */;
 			buildPhases = (
-				D69A49819D2E006CE172897F /* Check Pods Manifest.lock */,
+				D69A49819D2E006CE172897F /* [CP] Check Pods Manifest.lock */,
 				E6CE18921CB90E8F005A4C42 /* Sources */,
 				E6CE18931CB90E8F005A4C42 /* Frameworks */,
 				E6CE18941CB90E8F005A4C42 /* Resources */,
-				6D4A266A70B4F58007CA5072 /* Embed Pods Frameworks */,
-				2848AF7E044786ED40975D0D /* Copy Pods Resources */,
+				6D4A266A70B4F58007CA5072 /* [CP] Embed Pods Frameworks */,
+				2848AF7E044786ED40975D0D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,18 +211,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = slj;
 				TargetAttributes = {
 					E6CE18951CB90E8F005A4C42 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = QRLM6QECJ8;
+						LastSwiftMigration = 0800;
 					};
 					E6CE18AC1CB90E90005A4C42 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = E6CE18951CB90E8F005A4C42;
 					};
 					E6CE18B71CB90E90005A4C42 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = E6CE18951CB90E8F005A4C42;
 					};
 				};
@@ -288,14 +279,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2848AF7E044786ED40975D0D /* Copy Pods Resources */ = {
+		2848AF7E044786ED40975D0D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,14 +294,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sportApp/Pods-sportApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6D4A266A70B4F58007CA5072 /* Embed Pods Frameworks */ = {
+		6D4A266A70B4F58007CA5072 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,14 +309,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sportApp/Pods-sportApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D69A49819D2E006CE172897F /* Check Pods Manifest.lock */ = {
+		D69A49819D2E006CE172897F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,10 +331,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6CE18CF1CB92320005A4C42 /* ListeningViewController.swift in Sources */,
-				E6CE189C1CB90E90005A4C42 /* ViewController.swift in Sources */,
-				E6CE18CC1CB91F20005A4C42 /* RecordeViewController.swift in Sources */,
+				E65D58E81D5CA9F30062BBC8 /* ListLViewController.swift in Sources */,
+				E6CE189C1CB90E90005A4C42 /* TopViewController.swift in Sources */,
+				E611BC9F1D9010F400DED4D6 /* ProgramInfoModalViewController.swift in Sources */,
+				E6FCA5DA1DCB9A3D00E8ED4C /* MenuViewController.swift in Sources */,
 				E6CE189A1CB90E90005A4C42 /* AppDelegate.swift in Sources */,
+				E6E58A561D62AFE9002309D5 /* ListeningViewController.swift in Sources */,
+				E65D58E21D5C93000062BBC8 /* BaseViewController.swift in Sources */,
 				E6CE18A21CB90E90005A4C42 /* sportApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,7 +346,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6CE18B21CB90E90005A4C42 /* sportAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +353,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6CE18BD1CB90E90005A4C42 /* sportAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,8 +404,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -440,6 +434,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -456,8 +451,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -476,6 +473,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -484,12 +483,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66631CB9CD9A12674B4C7E94 /* Pods-sportApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QRLM6QECJ8;
 				INFOPLIST_FILE = sportApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.speedlink-td.sportApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -497,12 +499,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9FE486B3548EFAB1D14077E1 /* Pods-sportApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QRLM6QECJ8;
 				INFOPLIST_FILE = sportApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.speedlink-td.sportApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -514,6 +519,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.speedlink-td.sportAppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sportApp.app/sportApp";
 			};
 			name = Debug;
@@ -526,6 +532,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.speedlink-td.sportAppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sportApp.app/sportApp";
 			};
 			name = Release;
@@ -537,6 +544,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.speedlink-td.sportAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = sportApp;
 				USES_XCTRUNNER = YES;
 			};
@@ -549,6 +557,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.speedlink-td.sportAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = sportApp;
 				USES_XCTRUNNER = YES;
 			};

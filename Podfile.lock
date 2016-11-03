@@ -1,13 +1,28 @@
 PODS:
-  - lf (0.1.11):
-    - XCGLogger (~> 3.2)
-  - XCGLogger (3.3)
+  - DrawerController (3.0.0):
+    - DrawerController/Core (= 3.0.0)
+    - DrawerController/DrawerVisualStates (= 3.0.0)
+  - DrawerController/Core (3.0.0)
+  - DrawerController/DrawerVisualStates (3.0.0):
+    - DrawerController/Core
+  - lf (0.5.1):
+    - XCGLogger (~> 4.0.0)
+  - PagingMenuController (2.0.0)
+  - XCGLogger (4.0.0):
+    - XCGLogger/Core (= 4.0.0)
+  - XCGLogger/Core (4.0.0)
 
 DEPENDENCIES:
+  - DrawerController
   - lf
+  - PagingMenuController
 
 SPEC CHECKSUMS:
-  lf: 0c93ee011badc50bbb57e27d34417ed813806b4c
-  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
+  DrawerController: 5e859c5dbeae3cea20981eb5ff2aa16eb946dff9
+  lf: 40f2c7f60f1c1250334b55c097ca75f837efd5fa
+  PagingMenuController: 60602bfb5421d6536c1e3097baeed601dec1d85b
+  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 12251e63e62e2862dd256ba24a7ace64f351180a
+
+COCOAPODS: 1.0.1
