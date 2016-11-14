@@ -22,16 +22,14 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
     
     func slideMenuItemSelectedAtIndex(_ index: Int32) {
         let topViewController : UIViewController = self.navigationController!.topViewController!
-        print("View Controller is : \(topViewController) \n", terminator: "")
+       
         switch(index){
         case 0:
-            print("top\n", terminator: "")
             
             self.openViewControllerBasedOnIdentifier("top")
             
             break
         case 1:
-            print("Play\n", terminator: "")
             
             self.openViewControllerBasedOnIdentifier("list")
             
