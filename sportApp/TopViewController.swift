@@ -11,12 +11,6 @@ import UIKit
 class TopViewController: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var height:CGFloat!
-    var width:CGFloat!
-    
-    //Totalのページ数
-    let pNum: Int = 4
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
