@@ -45,8 +45,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func updateArrayMenuOptions() {
-        arrayMenuOptions.append(["title":"Home", "icon":"HomeIcon"])
-        arrayMenuOptions.append(["title":"Play", "icon":"PlayIcon"])
+        arrayMenuOptions.append(["title":"新着", "icon":"NewIcon"])
+        arrayMenuOptions.append(["title":"ランキング", "icon":"RankingIcon"])
+        arrayMenuOptions.append(["title":"検索", "icon":"SerchIcon"])
+        arrayMenuOptions.append(["title":"フォロー/視聴履歴", "icon":"FollowIcon"])
+        arrayMenuOptions.append(["title":"マイページ", "icon":"MypageIcon"])
+        arrayMenuOptions.append(["title":"運営からのお知らせ", "icon":"InfoIcon"])
+        arrayMenuOptions.append(["title":"設定規約", "icon":"ConfigIcon"])
         
         tblMenuOptions.reloadData()
         
