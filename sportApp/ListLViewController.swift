@@ -9,19 +9,21 @@
 import UIKit
 import DrawerController
 
-class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource {
+class ListLViewController: BaseViewController ,UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     var drawerController: DrawerController!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addSlideMenuButton()
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //TableViewのセクション数を返すメソッド
