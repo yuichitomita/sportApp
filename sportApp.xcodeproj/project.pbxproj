@@ -11,8 +11,8 @@
 		E611BC9F1D9010F400DED4D6 /* ProgramInfoModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E611BC9E1D9010F400DED4D6 /* ProgramInfoModalViewController.swift */; };
 		E65D58E21D5C93000062BBC8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D58E11D5C93000062BBC8 /* BaseViewController.swift */; };
 		E65D58E81D5CA9F30062BBC8 /* ListLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65D58E71D5CA9F30062BBC8 /* ListLViewController.swift */; };
+		E69477FB1DDCA26800048B9D /* NewArrivalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69477FA1DDCA26800048B9D /* NewArrivalsViewController.swift */; };
 		E6CE189A1CB90E90005A4C42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18991CB90E90005A4C42 /* AppDelegate.swift */; };
-		E6CE189C1CB90E90005A4C42 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CE189B1CB90E90005A4C42 /* TopViewController.swift */; };
 		E6CE189F1CB90E90005A4C42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6CE189D1CB90E90005A4C42 /* Main.storyboard */; };
 		E6CE18A21CB90E90005A4C42 /* sportApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6CE18A01CB90E90005A4C42 /* sportApp.xcdatamodeld */; };
 		E6CE18A41CB90E90005A4C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6CE18A31CB90E90005A4C42 /* Assets.xcassets */; };
@@ -49,9 +49,9 @@
 		E611BC9E1D9010F400DED4D6 /* ProgramInfoModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramInfoModalViewController.swift; sourceTree = "<group>"; };
 		E65D58E11D5C93000062BBC8 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E65D58E71D5CA9F30062BBC8 /* ListLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListLViewController.swift; sourceTree = "<group>"; };
+		E69477FA1DDCA26800048B9D /* NewArrivalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewArrivalsViewController.swift; sourceTree = "<group>"; };
 		E6CE18961CB90E8F005A4C42 /* sportApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sportApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6CE18991CB90E90005A4C42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E6CE189B1CB90E90005A4C42 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		E6CE189E1CB90E90005A4C42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6CE18A11CB90E90005A4C42 /* sportApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sportApp.xcdatamodel; sourceTree = "<group>"; };
 		E6CE18A31CB90E90005A4C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,7 +137,6 @@
 				E6CE7F4A1DD9E36800A6BC49 /* background_button.jpeg */,
 				E6CE18991CB90E90005A4C42 /* AppDelegate.swift */,
 				E65D58E71D5CA9F30062BBC8 /* ListLViewController.swift */,
-				E6CE189B1CB90E90005A4C42 /* TopViewController.swift */,
 				E65D58E11D5C93000062BBC8 /* BaseViewController.swift */,
 				E6CE189D1CB90E90005A4C42 /* Main.storyboard */,
 				E6CE18A31CB90E90005A4C42 /* Assets.xcassets */,
@@ -147,6 +146,7 @@
 				E6E58A551D62AFE9002309D5 /* ListeningViewController.swift */,
 				E611BC9E1D9010F400DED4D6 /* ProgramInfoModalViewController.swift */,
 				E6FCA5D91DCB9A3D00E8ED4C /* MenuViewController.swift */,
+				E69477FA1DDCA26800048B9D /* NewArrivalsViewController.swift */,
 			);
 			path = sportApp;
 			sourceTree = "<group>";
@@ -340,13 +340,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E65D58E81D5CA9F30062BBC8 /* ListLViewController.swift in Sources */,
-				E6CE189C1CB90E90005A4C42 /* TopViewController.swift in Sources */,
 				E611BC9F1D9010F400DED4D6 /* ProgramInfoModalViewController.swift in Sources */,
 				E6FCA5DA1DCB9A3D00E8ED4C /* MenuViewController.swift in Sources */,
 				E6CE189A1CB90E90005A4C42 /* AppDelegate.swift in Sources */,
 				E6E58A561D62AFE9002309D5 /* ListeningViewController.swift in Sources */,
 				E65D58E21D5C93000062BBC8 /* BaseViewController.swift in Sources */,
 				E6CE18A21CB90E90005A4C42 /* sportApp.xcdatamodeld in Sources */,
+				E69477FB1DDCA26800048B9D /* NewArrivalsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
