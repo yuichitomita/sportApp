@@ -7,19 +7,18 @@
 //
 
 import UIKit
-import DrawerController
 
-class ListLViewController: BaseViewController ,UITableViewDelegate, UITableViewDataSource {
+class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var tableView: UITableView!
-    var drawerController: DrawerController!
+ 
+    @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addSlideMenuButton()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,9 +30,6 @@ class ListLViewController: BaseViewController ,UITableViewDelegate, UITableViewD
         return 1
     }
     
-    /**
-     セクション毎のセル数を指定するメソッド
-     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
