@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="z80-zz-ptf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="syd-mp-mAa">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -9,43 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--スポーツ観戦-->
-        <scene sceneID="6G2-Dc-ywR">
-            <objects>
-                <viewController restorationIdentifier="top" storyboardIdentifier="top" id="lka-Ey-LiF" customClass="TopViewController" customModule="sportApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SAJ-TL-QB8"/>
-                        <viewControllerLayoutGuide type="bottom" id="rFQ-Bt-FYF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JGe-0b-D0x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8z-1g-XqG"/>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="c8z-1g-XqG" secondAttribute="trailing" id="Rbs-8f-1zw"/>
-                            <constraint firstItem="rFQ-Bt-FYF" firstAttribute="top" secondItem="c8z-1g-XqG" secondAttribute="bottom" id="T0a-Wt-OJg"/>
-                            <constraint firstItem="c8z-1g-XqG" firstAttribute="leading" secondItem="JGe-0b-D0x" secondAttribute="leading" constant="9" id="XpL-uY-wOQ"/>
-                            <constraint firstItem="c8z-1g-XqG" firstAttribute="top" secondItem="SAJ-TL-QB8" secondAttribute="bottom" id="k1Y-pD-QWU"/>
-                            <constraint firstItem="c8z-1g-XqG" firstAttribute="leading" secondItem="JGe-0b-D0x" secondAttribute="leading" id="n6f-XC-4uZ"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="XpL-uY-wOQ"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" title="スポーツ観戦" id="p26-1q-DvR"/>
-                    <connections>
-                        <outlet property="scrollView" destination="c8z-1g-XqG" id="kbJ-0d-G5V"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fuo-na-jWE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2525" y="-166"/>
-        </scene>
         <!--Menu View Controller-->
         <scene sceneID="VCv-TM-XLi">
             <objects>
@@ -110,7 +73,7 @@
                                         <rect key="frame" x="0.0" y="144" width="321" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ms8-DD-qDF" id="5X3-sa-bvK">
-                                            <frame key="frameInset" width="321" height="54"/>
+                                            <frame key="frameInset" width="321" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DaW-WK-4CA">
@@ -148,6 +111,25 @@
             <point key="canvasLocation" x="855" y="-170"/>
         </scene>
         <!--新着-->
+        <scene sceneID="2bd-Bz-CIU">
+            <objects>
+                <viewController storyboardIdentifier="New" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UbW-ib-gIJ" customClass="NewArrivalsViewController" customModule="sportApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AEy-Qk-p8E"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ymt-XL-kcu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Bd-Re-ugo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="新着" id="yYq-CD-z3q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ItF-9o-4pL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2486" y="-170"/>
+        </scene>
+        <!--新着-->
         <scene sceneID="N4v-Vo-gt3">
             <objects>
                 <viewController storyboardIdentifier="list" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Esf-Yd-A32" customClass="ListLViewController" customModule="sportApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -163,10 +145,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="cnc-UZ-CZd">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="120"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cnc-UZ-CZd" id="S5j-bk-7B5">
-                                            <frame key="frameInset" width="375" height="120"/>
+                                            <frame key="frameInset" width="375" height="119"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="n0d-ZD-we1">
@@ -239,12 +221,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="新着" id="m3J-u3-Hhi"/>
                     <connections>
-                        <outlet property="tableView" destination="Ors-zd-lfv" id="Xh9-IE-lMh"/>
+                        <outlet property="tableView" destination="Ors-zd-lfv" id="L3R-dn-8XE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EDG-k9-bot" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2680.8000000000002" y="571.66416791604206"/>
+            <point key="canvasLocation" x="3332" y="-170"/>
         </scene>
         <!--Listening View Controller-->
         <scene sceneID="Z5b-Nz-gb7">
@@ -255,7 +237,7 @@
                         <viewControllerLayoutGuide type="bottom" id="565-wL-u1O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="v8c-h6-4Of">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0GK-l9-6pi">
@@ -265,7 +247,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L1s-pR-iUv" id="og2-uQ-ggh">
-                                            <frame key="frameInset" width="375" height="80"/>
+                                            <frame key="frameInset" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウント名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcG-uF-wh3">
@@ -393,43 +375,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YAU-5f-UoC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3697" y="572"/>
+            <point key="canvasLocation" x="4465" y="-170"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="eQ3-vX-Hak">
+        <scene sceneID="ehL-Iy-zQk">
             <objects>
-                <navigationController storyboardIdentifier="nav" automaticallyAdjustsScrollViewInsets="NO" id="z80-zz-ptf" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="syd-mp-mAa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wXE-VE-GSd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="lka-Ey-LiF" kind="relationship" relationship="rootViewController" id="Bbj-1S-DFm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EwH-kt-qMA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1713" y="-166"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="2MP-ph-2k0">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="geY-xe-0wy" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2XG-mm-PAe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ft4-qt-2mX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Esf-Yd-A32" kind="relationship" relationship="rootViewController" id="eDc-dC-K9I"/>
+                        <segue destination="UbW-ib-gIJ" kind="relationship" relationship="rootViewController" id="V5z-Sb-ZV4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Aw4-aO-VAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WTP-bz-2Ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1741.5999999999999" y="571.66416791604206"/>
+            <point key="canvasLocation" x="1650" y="-170"/>
         </scene>
     </scenes>
     <resources>
