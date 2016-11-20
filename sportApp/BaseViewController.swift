@@ -24,12 +24,12 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
         switch(index){
         case 0:
             
-            self.openViewControllerBasedOnIdentifier("top")
+            self.openViewControllerBasedOnIdentifier("New")
             
             break
         case 1:
             
-            self.openViewControllerBasedOnIdentifier("list")
+            self.openViewControllerBasedOnIdentifier("New")
             
             break
         default:
@@ -83,7 +83,7 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
     func onSlideMenuButtonPressed(_ sender : UIButton){
         if (sender.tag == 10)
         {
-            // To Hide Menu If it already there
+        
             self.slideMenuItemSelectedAtIndex(-1);
             
             sender.tag = 0;
