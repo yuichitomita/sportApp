@@ -21,6 +21,7 @@
 		E6CE7F4B1DD9E36800A6BC49 /* background_button.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E6CE7F4A1DD9E36800A6BC49 /* background_button.jpeg */; };
 		E6E58A561D62AFE9002309D5 /* ListeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E58A551D62AFE9002309D5 /* ListeningViewController.swift */; };
 		E6FCA5DA1DCB9A3D00E8ED4C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCA5D91DCB9A3D00E8ED4C /* MenuViewController.swift */; };
+		E6FEB08A1DE4A7F900BE915E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FEB0891DE4A7F900BE915E /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		E6CE7F4A1DD9E36800A6BC49 /* background_button.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_button.jpeg; sourceTree = "<group>"; };
 		E6E58A551D62AFE9002309D5 /* ListeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListeningViewController.swift; sourceTree = "<group>"; };
 		E6FCA5D91DCB9A3D00E8ED4C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		E6FEB0891DE4A7F900BE915E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				E611BC9E1D9010F400DED4D6 /* ProgramInfoModalViewController.swift */,
 				E6FCA5D91DCB9A3D00E8ED4C /* MenuViewController.swift */,
 				E69477FA1DDCA26800048B9D /* NewArrivalsViewController.swift */,
+				E6FEB0891DE4A7F900BE915E /* CustomTableViewCell.swift */,
 			);
 			path = sportApp;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6FEB08A1DE4A7F900BE915E /* CustomTableViewCell.swift in Sources */,
 				E65D58E81D5CA9F30062BBC8 /* ListLViewController.swift in Sources */,
 				E611BC9F1D9010F400DED4D6 /* ProgramInfoModalViewController.swift in Sources */,
 				E6FCA5DA1DCB9A3D00E8ED4C /* MenuViewController.swift in Sources */,
