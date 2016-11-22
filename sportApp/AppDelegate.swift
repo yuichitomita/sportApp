@@ -14,11 +14,11 @@ import DrawerController
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var drawerController: DrawerController!
-    var navigationController: UINavigationController!
+
     
     private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-               return true
+        
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
