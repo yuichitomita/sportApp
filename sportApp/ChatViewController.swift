@@ -9,9 +9,11 @@
 import UIKit
 import JSQMessagesViewController
 import SwiftyJSON
-
+import SnapKit
 
 class ChatViewController: JSQMessagesViewController {
+   
+    @IBOutlet var imgView: UIImageView!
     private var messages:[JSQMessage] = []
     private var incomingBuddle: JSQMessagesBubbleImage!
     private var outgoingBuddle: JSQMessagesBubbleImage!
@@ -22,10 +24,13 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.collectionView?.backgroundColor  = UIColor.lightGray
+        
         initialSettings()
-
-
+        
+        self.view.addSubview(self.imgView)
+         
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,30 +40,35 @@ class ChatViewController: JSQMessagesViewController {
         addMessage(withId: senderId(), name: "Me", text: "できたー")
        
         finishReceivingMessage()
+    
+    }
+    
+    override func updateViewConstraints() {
+        self.imgView.snp.makeConstraints{ (make) -> Void in
+            make.top.equalTo(self.navigationController!.navigationBar.snp.bottom).inset(0)
+            make.width.equalTo(self.view).inset(0)
+            make.bottom.equalTo(self.collectionView!.snp.top)
+        }
+        
+        super.updateViewConstraints()
     }
     
     private func initialSettings(){
         
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         self.incomingBuddle = bubbleFactory.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-        
         self.outgoingBuddle = bubbleFactory.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
-        
         self.incomingAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "tomi", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
         
         self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = .zero
         
-                          
     }
     
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
         
         let message = JSQMessage(senderId: "test", displayName: "a", text: "testだよ")
-        
         messages.append(message)
-        
         finishSendingMessage(animated: true)
-        
         
     }
     
@@ -68,10 +78,8 @@ class ChatViewController: JSQMessagesViewController {
     
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAt indexPath: IndexPath) -> JSQMessageBubbleImageDataSource {
-        
         return messages[indexPath.item].senderId == self.senderId() ? outgoingBuddle : incomingBuddle
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
@@ -83,9 +91,7 @@ class ChatViewController: JSQMessagesViewController {
     
     private func addMessage(withId id: String, name: String, text: String) {
         let message = JSQMessage(senderId: id, displayName: name, text: text)
-        
         messages.append(message)
-        
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource? {
@@ -94,12 +100,7 @@ class ChatViewController: JSQMessagesViewController {
             return incomingAvatar
         }
         return nil
-        
-    
     }
-    
- 
-    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
@@ -112,5 +113,7 @@ class ChatViewController: JSQMessagesViewController {
         }
         return cell
     }
+
     
-   }
+    
+}
