@@ -14,6 +14,7 @@ import SnapKit
 class ChatViewController: JSQMessagesViewController {
    
     @IBOutlet var imgView: UIImageView!
+    @IBOutlet var bcastInfoButton: UIButton!
     private var messages:[JSQMessage] = []
     private var incomingBuddle: JSQMessagesBubbleImage!
     private var outgoingBuddle: JSQMessagesBubbleImage!
@@ -29,16 +30,13 @@ class ChatViewController: JSQMessagesViewController {
         
         initialSettings()
         
+        self.imgView.addSubview(bcastInfoButton)
         self.view.addSubview(self.imgView)
          
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        addMessage(withId: "foo", name: "Mr.Bolt", text: "テストだよ")
-        addMessage(withId: senderId(), name: "Me", text: "やったー")
-        addMessage(withId: senderId(), name: "Me", text: "できたー")
-       
         finishReceivingMessage()
     
     }
@@ -48,6 +46,12 @@ class ChatViewController: JSQMessagesViewController {
             make.top.equalTo(self.navigationController!.navigationBar.snp.bottom).inset(0)
             make.width.equalTo(self.view).inset(0)
             make.bottom.equalTo(self.collectionView!.snp.top)
+        }
+        
+        self.bcastInfoButton.snp.makeConstraints{ (make) -> Void in
+            make.top.equalTo(self.imgView).inset(4)
+            make.trailing.equalTo(self.imgView).inset(4)
+            make.size.equalTo(44)
         }
         
         super.updateViewConstraints()
@@ -65,11 +69,10 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
-        
-        let message = JSQMessage(senderId: "test", displayName: "a", text: "testだよ")
-        messages.append(message)
-        finishSendingMessage(animated: true)
-        
+    
+        let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
+        self.messages.append(message)
+        self.finishSendingMessage(animated: true)
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageDataForItemAt indexPath: IndexPath) -> JSQMessageData {
@@ -112,6 +115,10 @@ class ChatViewController: JSQMessagesViewController {
             cell.textView?.textColor = UIColor.black
         }
         return cell
+    }
+    
+    override func senderDisplayName() -> String {
+        return "passion"
     }
 
     
