@@ -30,7 +30,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tblMenuOptions.dataSource = self
         
         tblMenuOptions.tableFooterView = UIView()
-
+        
+        updateArrayMenuOptions()
         
     }
 
@@ -41,7 +42,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateArrayMenuOptions()
     }
     
     func updateArrayMenuOptions() {
