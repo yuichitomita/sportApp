@@ -10,9 +10,12 @@ import UIKit
 import JSQMessagesViewController
 import SwiftyJSON
 import SnapKit
+import SocketIO
 
 class ChatViewController: JSQMessagesViewController {
-   
+    private let socketURL = URL(string: "http://153.126.157.154:1337/chat")
+    var socket: SocketIOClient!
+    
     @IBOutlet var imgView: UIImageView!
     @IBOutlet var bcastInfoButton: UIButton!
     private var messages:[JSQMessage] = []
@@ -26,16 +29,23 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.collectionView?.backgroundColor  = UIColor.lightGray
         
         initialSettings()
+        bcastInfoButton.addTarget(self, action: #selector(self.openButtonTouchUpInside(_:)), for: .touchUpInside)
         
-        self.imgView.addSubview(bcastInfoButton)
+        self.view.addSubview(bcastInfoButton)
         self.view.addSubview(self.imgView)
-         
+        
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        addMessage(withId: "test", name: "aaa", text: "test")
         
         finishReceivingMessage()
     
@@ -65,7 +75,6 @@ class ChatViewController: JSQMessagesViewController {
         self.incomingAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "tomi", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
         
         self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = .zero
-        
     }
     
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
@@ -77,6 +86,29 @@ class ChatViewController: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageDataForItemAt indexPath: IndexPath) -> JSQMessageData {
         return messages[indexPath.item]
+    }
+    
+    func openButtonTouchUpInside(_ sender: AnyObject) {
+        //let contentVC = ModalViewController()
+        let storyboard: UIStoryboard = self.storyboard!
+        let contentVC = storyboard.instantiateViewController(withIdentifier: "modal")
+        
+        //define use of popover
+        contentVC.modalPresentationStyle = .popover
+        //set size
+        contentVC.preferredContentSize = CGSize(width: 350, height: 350)
+        //set origin
+        contentVC.popoverPresentationController?.sourceView = view
+
+        let point = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+        contentVC.popoverPresentationController?.sourceRect.contains(point)
+        
+        //set arrow direction
+        contentVC.popoverPresentationController?.permittedArrowDirections = .unknown
+        //set delegate
+        contentVC.popoverPresentationController?.delegate = self
+        //present
+        present(contentVC, animated: true, completion: nil)
     }
     
     
@@ -121,6 +153,11 @@ class ChatViewController: JSQMessagesViewController {
         return "passion"
     }
 
-    
-    
+}
+
+// MARK : UIPopoverPresentationControllerDelegate
+extension ChatViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
 }
