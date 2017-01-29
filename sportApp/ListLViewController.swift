@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FacebookCore
+import FacebookLogin
+import Alamofire
+import SwiftyJSON
 
 class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
@@ -20,11 +24,16 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    
         tableView.delegate = self
         tableView.dataSource = self
         
+        getBcastInfo()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,5 +58,25 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // セルがタップされた時の処理
+        let next = self.storyboard!.instantiateViewController(withIdentifier: "bcast")
+        next.title = titles[indexPath.row]
+        self.navigationController?.pushViewController(next, animated: true)
+    }
+    
+    func getBcastInfo(){
+  
+        let listUrl = "http://153.126.157.154:83/api/login.php";
+        Alamofire.request(listUrl).responseJSON{ response in
+            let json = JSON(response.result.value ?? 0)
+            json.forEach{(_, data) in
+                //self.items.append(data)
+                print(data)
+                
+            }
+            self.tableView.reloadData()
+        }
+    }
 }
