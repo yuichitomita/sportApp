@@ -63,5 +63,10 @@
         <string>fbauth2</string>
         <string>fbshareextension</string>
     </array>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>音声配信のため</string>
+    <key>NSCameraUsageDescription</key>
+    <string>音声配信のため</string>
+    
 </dict>
 </plist>
