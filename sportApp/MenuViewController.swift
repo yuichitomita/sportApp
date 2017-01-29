@@ -7,21 +7,23 @@
 //
 
 import UIKit
+import FacebookCore
+import FacebookLogin
 
 protocol SlideMenuDeligate {
     func slideMenuItemSelectedAtIndex(_ index : Int32)
 }
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    let userDefaults = UserDefaults.standard
     
+    @IBOutlet var profileImgView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
     @IBOutlet var tblMenuOptions: UITableView!
     @IBOutlet var btnCloseMenuOverlay: UIButton!
     
     var arrayMenuOptions = [Dictionary<String,String>]()
-    
     var btnMenu : UIButton!
-    
     var delegate : SlideMenuDeligate?
     
     override func viewDidLoad() {
@@ -42,6 +44,24 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if AccessToken.current != nil {
+            //login済み
+            self.userDefaults.synchronize()
+            
+            let url = URL(string: self.userDefaults.string(forKey: "picture")!)
+            let imgData = NSData(contentsOf: url!)
+            profileImgView.image = UIImage(data: imgData as! Data)
+            
+            let name = self.userDefaults.string(forKey: "name")
+            nameLabel.text = name
+            
+            print(self.userDefaults.string(forKey: "picture")!)
+            
+        }else{
+            profileImgView.image = UIImage(named: "guest")
+            nameLabel.text = "Guest"
+            
+        }
     }
     
     func updateArrayMenuOptions() {
@@ -56,6 +76,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tblMenuOptions.reloadData()
         
     }
+    
     @IBAction func onCloseMenuClick(_ button:UIButton) {
         btnMenu.tag = 0
         
