@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import DrawerController
+import FacebookCore
+import FacebookLogin
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -107,6 +109,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return SDKApplicationDelegate.shared.application(application,
+                                                         open: url,
+                                                         sourceApplication: sourceApplication,
+                                                         annotation: annotation)
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        return SDKApplicationDelegate.shared.application(application, open: url, options: options)
+    }
+    
 
 }
+
+
 
