@@ -23,7 +23,8 @@ class BcastConfigBaseViewController: UIViewController {
     @IBAction func dispAlert(_ sender: AnyObject) {
         let alert = UIAlertController(title: "放送開始", message: "放送開始してもいいですか?", preferredStyle: UIAlertControllerStyle.alert)
         let defaultAvtion = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) -> Void in
-            let next = self.storyboard!.instantiateViewController(withIdentifier: "bcast")
+            //let next = self.storyboard!.instantiateViewController(withIdentifier: "bcast")
+            let next = LiveViewController()
             
             self.navigationController?.pushViewController(next, animated: true)
         
