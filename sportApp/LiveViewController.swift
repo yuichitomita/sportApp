@@ -9,14 +9,8 @@
 import lf
 import UIKit
 import AVFoundation
-
-struct Preference {
-    static let defaultInstance:Preference = Preference()
-    
-    var uri:String? = "rtmp://153.126.157.154/live/"
-    var streamName:String? = "test"
-    
-}
+import Alamofire
+import SwiftyJSON
 
 final class LiveViewController: UIViewController {
     var rtmpConnection:RTMPConnection = RTMPConnection()
@@ -25,7 +19,10 @@ final class LiveViewController: UIViewController {
     var currentEffect:VisualEffect? = nil
     var httpService:HTTPService!
     var httpStream:HTTPStream!
-    
+    let uri:String? = "rtmp://153.126.157.154/live/"
+    var streamName = "30"
+    var items: [[String: String?]] = []
+
     let touchView: UIView! = UIView()
     let lfView:GLLFView = GLLFView(frame: CGRect.zero)
     
@@ -168,6 +165,9 @@ final class LiveViewController: UIViewController {
         view.addSubview(effectSegmentControl)
         view.addSubview(pauseButton)
         view.addSubview(publishButton)
+        
+        setStreamName()
+        print(self.streamName)
     }
     
     override func viewWillLayoutSubviews() {
@@ -186,6 +186,10 @@ final class LiveViewController: UIViewController {
         audioBitrateLabel.text = "audio \(Int(audioBitrateSlider.value))/kbps"
         audioBitrateLabel.frame = CGRect(x: view.frame.width - 150 - 60, y: view.frame.height - 44 - 22, width: 150, height: 44)
         audioBitrateSlider.frame = CGRect(x: 20, y: view.frame.height - 44, width: view.frame.width - 44 - 60, height: 44)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     func rotateCamera(_ sender:UIBarButtonItem) {
@@ -235,7 +239,9 @@ final class LiveViewController: UIViewController {
         } else {
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(LiveViewController.rtmpStatusHandler(_:)), observer: self)
-            rtmpConnection.connect(Preference.defaultInstance.uri!)
+            //rtmpConnection.connect(Preference.defaultInstance.uri!)
+            rtmpConnection.connect(self.uri!)
+            
             publish.setTitle("■", for: UIControlState())
         }
         publish.isSelected = !publish.isSelected
@@ -246,7 +252,8 @@ final class LiveViewController: UIViewController {
         if let data:ASObject = e.data as? ASObject , let code:String = data["code"] as? String {
             switch code {
             case RTMPConnection.Code.connectSuccess.rawValue:
-                rtmpStream!.publish(Preference.defaultInstance.streamName!)
+                //rtmpStream!.publish(Preference.defaultInstance.streamName!)
+                rtmpStream.publish(self.streamName)
             // sharedObject!.connect(rtmpConnection)
             default:
                 break
@@ -298,4 +305,18 @@ final class LiveViewController: UIViewController {
             currentFPSLabel.text = "\(rtmpStream.currentFPS)"
         }
     }
+    
+    //streamNameを取得
+    func setStreamName() {
+        
+        let listUrl = "http://153.126.157.154:83/api/registerBcastInfo.php";
+            Alamofire.request(listUrl).responseJSON{ response in
+                guard let object = response.result.value else {
+                    return
+                }
+                let json = JSON(object)
+                self.streamName =  json["stream_name"].stringValue
+            }
+    }
 }
+
