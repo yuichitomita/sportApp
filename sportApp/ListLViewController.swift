@@ -17,8 +17,9 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
  
     @IBOutlet var tableView: UITableView!
     
-    let titles = ["放送Title","のんびりタイムハート","寂しがり屋のラジオ","若林がお届けします","アゴトーク"]
-    let accountNames = ["アカウント名","みさきち","寂しがり屋","若林","あごだし"]
+    // itemsをJSONの配列と定義
+    var items: [JSON] = []
+    
     let accountImages = ["account1","account2","account3","account4","account5"]
     
     
@@ -45,16 +46,16 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath) as! CustomTableViewCell
         
-        cell.title.text = titles[indexPath.row]
-        cell.accountName.text = accountNames[indexPath.row]
-        cell.accountImageView.image = UIImage(named: accountImages[indexPath.row])
+        cell.title.text = items[indexPath.row]["program_name"].string
+        cell.accountName.text = items[indexPath.row]["user_name"].string
+        //cell.accountImageView.image = UIImage(named: accountImages[indexPath.row])
         
         return cell
     }
@@ -62,18 +63,17 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルがタップされた時の処理
         let next = self.storyboard!.instantiateViewController(withIdentifier: "bcast")
-        next.title = titles[indexPath.row]
+        next.title = items[indexPath.row]["program_name"].string
         self.navigationController?.pushViewController(next, animated: true)
     }
     
     func getBcastInfo(){
   
-        let listUrl = "http://153.126.157.154:83/api/login.php";
+        let listUrl = "http://153.126.157.154:83/api/bcastInfo.php";
         Alamofire.request(listUrl).responseJSON{ response in
             let json = JSON(response.result.value ?? 0)
             json.forEach{(_, data) in
-                //self.items.append(data)
-                print(data)
+                self.items.append(data)
                 
             }
             self.tableView.reloadData()
