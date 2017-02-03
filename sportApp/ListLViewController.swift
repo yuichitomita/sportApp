@@ -55,7 +55,9 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         
         cell.title.text = items[indexPath.row]["program_name"].string
         cell.accountName.text = items[indexPath.row]["user_name"].string
-        //cell.accountImageView.image = UIImage(named: accountImages[indexPath.row])
+        let url = NSURL(string: items[indexPath.row]["program_img_path"].string!);
+        let data = NSData(contentsOf: url as! URL)
+        cell.accountImageView.image = UIImage(data: data as! Data)
         
         return cell
     }
@@ -74,6 +76,7 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
             let json = JSON(response.result.value ?? 0)
             json.forEach{(_, data) in
                 self.items.append(data)
+                print(data)
                 
             }
             self.tableView.reloadData()
