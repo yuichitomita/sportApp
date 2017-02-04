@@ -14,14 +14,11 @@ import SwiftyJSON
 
 class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
- 
+    var refreshControl = UIRefreshControl()
     @IBOutlet var tableView: UITableView!
     
     // itemsをJSONの配列と定義
     var items: [JSON] = []
-    
-    let accountImages = ["account1","account2","account3","account4","account5"]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +26,17 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         
-        getBcastInfo()
+        // set up the refresh control
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(self.refresh), for: UIControlEvents.valueChanged)
+        self.tableView?.addSubview(refreshControl)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getBcastInfo()
+        self.tableView.reloadData()
+        super.viewWillAppear(animated)
        
     }
 
@@ -64,13 +67,15 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルがタップされた時の処理
-        let next = self.storyboard!.instantiateViewController(withIdentifier: "bcast")
+        let next = ListeningViewController()
         next.title = items[indexPath.row]["program_name"].string
+        next.streamName = items[indexPath.row]["broadcast_id"].string!
+        //next.streamName = "test"
         self.navigationController?.pushViewController(next, animated: true)
     }
     
     func getBcastInfo(){
-  
+        
         let listUrl = "http://153.126.157.154:83/api/bcastInfo.php";
         Alamofire.request(listUrl).responseJSON{ response in
             let json = JSON(response.result.value ?? 0)
@@ -81,5 +86,14 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
             }
             self.tableView.reloadData()
         }
+    }
+    
+    func refresh(sender:AnyObject) {
+        self.items.removeAll()
+        self.getBcastInfo()
+        self.refreshControl.endRefreshing()
+        self.tableView.reloadData()
+
+        
     }
 }
