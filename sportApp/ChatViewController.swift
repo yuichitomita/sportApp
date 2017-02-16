@@ -9,61 +9,41 @@
 import UIKit
 import JSQMessagesViewController
 import SwiftyJSON
-import SnapKit
-import SocketIO
 
 class ChatViewController: JSQMessagesViewController {
-    private let socketURL = URL(string: "http://153.126.157.154:1337/chat")
-    var socket: SocketIOClient!
     
-    @IBOutlet var imgView: UIImageView!
-    @IBOutlet var bcastInfoButton: UIButton!
-    private var messages:[JSQMessage] = []
+    var messages:[JSQMessage] = []
     private var incomingBuddle: JSQMessagesBubbleImage!
     private var outgoingBuddle: JSQMessagesBubbleImage!
     private var incomingAvatar: JSQMessagesAvatarImage!
     
-    //test
-    private let targetUser: JSON = ["senderId": "targetUser","displayName": "passion"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // キーボードのジェスチャー登録.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
         
-        self.collectionView?.backgroundColor  = UIColor.lightGray
+        //Room参加
+        SocketIOManager.sharedInstance.joinRoom("room-1")
+
+        
+        // Node.jsからのメッセージをブロードキャストし、画面にそれを表示。
+        SocketIOManager.sharedInstance.getChatMessage {
+            (messageInfo)-> Void in
+            self.messages.append(messageInfo)
+            self.finishReceivingMessage(animated: true)
+        }
         
         initialSettings()
-        bcastInfoButton.addTarget(self, action: #selector(self.openButtonTouchUpInside(_:)), for: .touchUpInside)
-        
-        self.view.addSubview(bcastInfoButton)
-        self.view.addSubview(self.imgView)
-        
-        
-        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        addMessage(withId: "test", name: "aaa", text: "test")
-        
-        finishReceivingMessage()
-    
     }
     
     override func updateViewConstraints() {
-        self.imgView.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(self.navigationController!.navigationBar.snp.bottom).inset(0)
-            make.width.equalTo(self.view).inset(0)
-            make.bottom.equalTo(self.collectionView!.snp.top)
-        }
-        
-        self.bcastInfoButton.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(self.imgView).inset(4)
-            make.trailing.equalTo(self.imgView).inset(4)
-            make.size.equalTo(44)
-        }
-        
         super.updateViewConstraints()
     }
     
@@ -72,48 +52,40 @@ class ChatViewController: JSQMessagesViewController {
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         self.incomingBuddle = bubbleFactory.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
         self.outgoingBuddle = bubbleFactory.outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
-        self.incomingAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "tomi", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
-        
         self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = .zero
     }
     
-    override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
+    func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
     
-        let message = JSQMessage(senderId: senderId, senderDisplayName: senderDisplayName, date: date, text: text)
+    override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
+        
+        // 新しいメッセージデータを追加する.
+        let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
         self.messages.append(message)
-        self.finishSendingMessage(animated: true)
+        self.finishReceivingMessage(animated: true)
+        
+        // サーバーへメッセージ送信.
+        SocketIOManager.sharedInstance.sendMessage("room-1", userId: "2", userName: senderDisplayName, msg: text)
+        
+        // TextFieldのテキストをクリア.
+        self.inputToolbar.contentView?.textView?.text = ""
+        
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageDataForItemAt indexPath: IndexPath) -> JSQMessageData {
         return messages[indexPath.item]
     }
     
-    func openButtonTouchUpInside(_ sender: AnyObject) {
-        //let contentVC = ModalViewController()
-        let storyboard: UIStoryboard = self.storyboard!
-        let contentVC = storyboard.instantiateViewController(withIdentifier: "modal")
-        
-        //define use of popover
-        contentVC.modalPresentationStyle = .popover
-        //set size
-        contentVC.preferredContentSize = CGSize(width: 350, height: 350)
-        //set origin
-        contentVC.popoverPresentationController?.sourceView = view
-
-        let point = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
-        contentVC.popoverPresentationController?.sourceRect.contains(point)
-        
-        //set arrow direction
-        contentVC.popoverPresentationController?.permittedArrowDirections = .unknown
-        //set delegate
-        contentVC.popoverPresentationController?.delegate = self
-        //present
-        present(contentVC, animated: true, completion: nil)
-    }
-    
-    
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAt indexPath: IndexPath) -> JSQMessageBubbleImageDataSource {
-        return messages[indexPath.item].senderId == self.senderId() ? outgoingBuddle : incomingBuddle
+        if messages[indexPath.item].senderId == self.senderId() {
+            return JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(
+                with: UIColor(red: 112/255, green: 192/255, blue:  75/255, alpha: 1))
+        } else {
+            return JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(
+                with: UIColor(red: 229/255, green: 229/255, blue: 229/255, alpha: 1))
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -124,17 +96,16 @@ class ChatViewController: JSQMessagesViewController {
         return "targetUser"
     }
     
-    private func addMessage(withId id: String, name: String, text: String) {
-        let message = JSQMessage(senderId: id, displayName: name, text: text)
-        messages.append(message)
-    }
-    
     override func collectionView(_ collectionView: JSQMessagesCollectionView, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource? {
         
         if messages[indexPath.item].senderId != self.senderId() {
+            incomingAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: messages[indexPath.row].senderDisplayName, backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
+            
             return incomingAvatar
         }
+        
         return nil
+
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -152,12 +123,5 @@ class ChatViewController: JSQMessagesViewController {
     override func senderDisplayName() -> String {
         return "passion"
     }
-
 }
 
-// MARK : UIPopoverPresentationControllerDelegate
-extension ChatViewController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
-    }
-}
