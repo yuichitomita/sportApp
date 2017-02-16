@@ -2,69 +2,137 @@
 //  ListeningViewController.swift
 //  sportApp
 //
-//  Created by Tomi on 2016/08/16.
-//  Copyright © 2016年 slj. All rights reserved.
+//  Created by Tomi on 2017/02/04.
+//  Copyright © 2017年 slj. All rights reserved.
 //
 
 import UIKit
+import lf
+import AVFoundation
 
-class ListeningViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource{
+class ListeningViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var atButton: UIButton!
+    var rtmpConnection:RTMPConnection = RTMPConnection()
+    var rtmpStream:RTMPStream!
+    var sharedObject:RTMPSharedObject!
+    let uri:String? = "rtmp://153.126.157.154/live/"
+    var streamName = "test"
+    var items: [[String: String?]] = []
+    let lfView:GLLFView = GLLFView(frame: CGRect.zero)
+    
+    var publishButton:UIButton = {
+        let button:UIButton = UIButton()
+        button.backgroundColor = UIColor.blue
+        button.setTitle("●", for: UIControlState())
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
+    var pauseButton:UIButton = {
+        let button:UIButton = UIButton()
+        button.backgroundColor = UIColor.blue
+        button.setTitle("P", for: UIControlState())
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        let sampleRate:Double = 44_100
         
-        // 背景画像
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        UIImage(named: "sunset")?.draw(in: self.view.bounds)
+        do {
+            try AVAudioSession.sharedInstance().setPreferredSampleRate(sampleRate)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeVideoChat)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+        }
         
-        let image: UIImage! = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        self.view.backgroundColor = UIColor(patternImage: image)
-        // Do any additional setup after loading the view.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    /// セルの個数を指定するデリゲートメソッド（必須）
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    /// セルに値を設定するデータソースメソッド（必須）
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "comment")
-        //cell?.imageView?.image = UIImage(named: "megane")
-        cell?.imageView?.layer.cornerRadius = (cell?.imageView?.frame.size.width)! * 0.5;
-        //cell?.imageView?.clipsToBounds = true
+        rtmpStream = RTMPStream(connection: rtmpConnection)
+        rtmpStream.syncOrientation = true
+        rtmpStream.attachAudio(AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio), automaticallyConfiguresApplicationAudioSession: false)
         
-        return cell!
-    }
-    
-    /// セルが選択された時に呼ばれるデリゲートメソッド
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
-    
-    @IBAction func OpenButtonTouchUpInside(sender: UIButton) {
-        atButton = sender 
+        //rtmpStream.addObserver(self, forKeyPath: "currentFPS", options: NSKeyValueObservingOptions.new, context: nil)
         
-        let modalViewController = ProgramInfoModalViewController()
-        modalViewController.modalPresentationStyle = .custom
-        modalViewController.transitioningDelegate = self
-        present(modalViewController, animated: true, completion: nil)
-    }
-   
-}
+        rtmpStream.captureSettings = [
+            "fps": 30, // FPS
+            "sessionPreset": AVCaptureSessionPreset1280x720, // input video width/height
+            "continuousAutofocus": false, // use camera autofocus mode
+            "continuousExposure": false, //  use camera exposure mode
+        ]
 
-extension ListeningViewController: UIViewControllerTransitioningDelegate {
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        return UIPresentationController(presentedViewController: presented, presenting: presenting)
+        rtmpStream.audioSettings = [
+            "muted": false, // mute audio
+            "bitrate": 32 * 1024,
+            "sampleRate": sampleRate,
+        ]
+        
+        
+        rtmpStream.videoSettings = [
+            "width": 1280,
+            "height": 720,
+        ]
+        
+        publishButton.addTarget(self, action: #selector(LiveViewController.on(publish:)), for: .touchUpInside)
+        pauseButton.addTarget(self, action: #selector(LiveViewController.on(pause:)), for: .touchUpInside)
+        
+        
+        lfView.attachStream(rtmpStream)
+        
+        view.addSubview(lfView)
+        view.addSubview(pauseButton)
+        view.addSubview(publishButton)
+        
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        lfView.frame = view.bounds
+    
+        pauseButton.frame = CGRect(x: view.bounds.width - 44 - 20, y: view.bounds.height - 44 * 2 - 20 * 2, width: 44, height: 44)
+        publishButton.frame = CGRect(x: view.bounds.width - 44 - 20, y: view.bounds.height - 44 - 20, width: 44, height: 44)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    
+    func on(pause:UIButton) {
+        print("pause")
+        rtmpStream.togglePause()
+    }
+    
+    func on(publish:UIButton) {
+        if (publish.isSelected) {
+            UIApplication.shared.isIdleTimerDisabled = false
+            rtmpConnection.close()
+            rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(LiveViewController.rtmpStatusHandler(_:)), observer: self)
+            publish.setTitle("●", for: UIControlState())
+        } else {
+            UIApplication.shared.isIdleTimerDisabled = true
+            rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(LiveViewController.rtmpStatusHandler(_:)), observer: self)
+            rtmpConnection.connect(self.uri!)
+            
+            publish.setTitle("■", for: UIControlState())
+        }
+        publish.isSelected = !publish.isSelected
+    }
+    
+    func rtmpStatusHandler(_ notification:Notification) {
+        let e:Event = Event.from(notification)
+        if let data:ASObject = e.data as? ASObject , let code:String = data["code"] as? String {
+            switch code {
+            case RTMPConnection.Code.connectSuccess.rawValue:
+                rtmpStream.play(self.streamName)
+            default:
+                break
+            }
+        }
+    }
+    
 }
