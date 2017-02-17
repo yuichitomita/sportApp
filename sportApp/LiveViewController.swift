@@ -136,7 +136,7 @@ final class LiveViewController: JSQMessagesViewController {
         self.view.addGestureRecognizer(tap)
         
         //Room参加
-        SocketIOManager.sharedInstance.joinRoom("room-1")
+        SocketIOManager.sharedInstance.joinRoom(self.streamName)
         
         
         // Node.jsからのメッセージをブロードキャストし、画面にそれを表示。
@@ -165,7 +165,7 @@ final class LiveViewController: JSQMessagesViewController {
         self.finishReceivingMessage(animated: true)
         
         // サーバーへメッセージ送信.
-        SocketIOManager.sharedInstance.sendMessage("room-1", userId: "2", userName: senderDisplayName, msg: text)
+        SocketIOManager.sharedInstance.sendMessage(self.streamName, userId: self.streamName, userName: senderDisplayName, msg: text)
         
         // TextFieldのテキストをクリア.
         self.inputToolbar.contentView?.textView?.text = ""
