@@ -22,6 +22,8 @@ final class LiveViewController: JSQMessagesViewController {
     var streamName = "30"
     var items: [[String: String?]] = []
     let lfView:GLLFView = GLLFView(frame: CGRect.zero)
+    var userName = ""
+    
     
     // message
     var messages:[JSQMessage] = []
@@ -46,8 +48,19 @@ final class LiveViewController: JSQMessagesViewController {
         return button
     }()
     
-      override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userDefaults = UserDefaults.standard
+        
+        if (userDefaults.object(forKey: "name") != nil) {
+            userName = userDefaults.string(forKey: "name")!
+        }else {
+            userName = "guest"
+        }
+        
+        
+        self.setStreamName()
         
         //rtmp接続準備
         rtmpInitialSettings()
@@ -79,7 +92,6 @@ final class LiveViewController: JSQMessagesViewController {
         
         
         self.collectionView?.collectionViewLayout.sectionInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
-        
         
     }
     
@@ -123,8 +135,6 @@ final class LiveViewController: JSQMessagesViewController {
         view.addSubview(pauseButton)
         view.addSubview(publishButton)
     
-        setStreamName()
-        print(self.streamName)
 
     }
     
@@ -145,7 +155,6 @@ final class LiveViewController: JSQMessagesViewController {
             self.messages.append(messageInfo)
             self.finishReceivingMessage(animated: true)
         }
-
         
         let bubbleFactory = JSQMessagesBubbleImageFactory()
         self.incomingBuddle = bubbleFactory.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
@@ -165,7 +174,7 @@ final class LiveViewController: JSQMessagesViewController {
         self.finishReceivingMessage(animated: true)
         
         // サーバーへメッセージ送信.
-        SocketIOManager.sharedInstance.sendMessage(self.streamName, userId: self.streamName, userName: senderDisplayName, msg: text)
+        SocketIOManager.sharedInstance.sendMessage(self.streamName, userId: self.userName, userName: senderDisplayName, msg: text)
         
         // TextFieldのテキストをクリア.
         self.inputToolbar.contentView?.textView?.text = ""
@@ -222,7 +231,6 @@ final class LiveViewController: JSQMessagesViewController {
         return "test"
     }
     
-    
     func on(pause:UIButton) {
         rtmpStream.togglePause()
     }
@@ -257,7 +265,6 @@ final class LiveViewController: JSQMessagesViewController {
     
     //streamNameを取得
     func setStreamName() {
-        
         let listUrl = "http://153.126.157.154:83/api/registerBcastInfo.php";
             Alamofire.request(listUrl).responseJSON{ response in
                 guard let object = response.result.value else {
@@ -265,7 +272,7 @@ final class LiveViewController: JSQMessagesViewController {
                 }
                 let json = JSON(object)
                 self.streamName =  json["stream_name"].stringValue
-            }
+                }
     }
 }
 
