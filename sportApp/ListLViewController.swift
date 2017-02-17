@@ -68,9 +68,8 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルがタップされた時の処理
         let next = ListeningViewController()
-        next.title = items[indexPath.row]["program_name"].string
         next.streamName = items[indexPath.row]["broadcast_id"].string!
-        //next.streamName = "test"
+        next.title = items[indexPath.row]["program_name"].string
         self.navigationController?.pushViewController(next, animated: true)
     }
     
@@ -81,7 +80,7 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
             let json = JSON(response.result.value ?? 0)
             json.forEach{(_, data) in
                 self.items.append(data)
-                print(data)
+                //print(data)
                 
             }
             self.tableView.reloadData()
