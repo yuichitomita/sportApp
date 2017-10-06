@@ -87,7 +87,7 @@ class ListLViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         }
     }
     
-    func refresh(sender:AnyObject) {
+    @objc func refresh(sender:AnyObject) {
         self.items.removeAll()
         self.getBcastInfo()
         self.refreshControl.endRefreshing()

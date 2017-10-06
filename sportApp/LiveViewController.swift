@@ -6,7 +6,7 @@
 //  Copyright © 2017年 slj. All rights reserved.
 //
 
-import lf
+import HaishinKit
 import UIKit
 import AVFoundation
 import Alamofire
@@ -23,7 +23,9 @@ final class LiveViewController: JSQMessagesViewController {
     var items: [[String: String?]] = []
     let lfView:GLLFView = GLLFView(frame: CGRect.zero)
     var userName = ""
-    
+    var userId = "0"
+    var programName = ""
+    var programDtail = ""
     
     // message
     var messages:[JSQMessage] = []
@@ -50,7 +52,6 @@ final class LiveViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let userDefaults = UserDefaults.standard
         
         if (userDefaults.object(forKey: "name") != nil) {
@@ -59,7 +60,24 @@ final class LiveViewController: JSQMessagesViewController {
             userName = "guest"
         }
         
+//        if (userDefaults.object(forKey: "id") != nil) {
+//            userId = userDefaults.string(forKey: "id")!
+//        }else {
+//            userId = "0"
+//        }
         
+        if (userDefaults.object(forKey: "programName") != nil) {
+            programName = userDefaults.string(forKey: "programName")!
+        }else {
+            programName = "test"
+        }
+        
+        if (userDefaults.object(forKey: "programDtail") != nil) {
+            programDtail = userDefaults.string(forKey: "programDtail")!
+        }else {
+            programDtail = "test"
+        }
+
         self.setStreamName()
         
         //rtmp接続準備
@@ -89,12 +107,8 @@ final class LiveViewController: JSQMessagesViewController {
             make.centerX.equalTo(lfView).offset(30)
             make.centerY.equalTo(lfView).offset(20)
         }
-        
-        
         self.collectionView?.collectionViewLayout.sectionInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
-        
     }
-    
     
     private func rtmpInitialSettings() {
         let sampleRate:Double = 44_100
@@ -107,15 +121,13 @@ final class LiveViewController: JSQMessagesViewController {
         } catch {
         }
     
-    
         rtmpStream = RTMPStream(connection: rtmpConnection)
         rtmpStream.syncOrientation = true
-        rtmpStream.attachAudio(AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio), automaticallyConfiguresApplicationAudioSession: false)
-    
+        rtmpStream.attachAudio(AVCaptureDevice.default(for: AVMediaType.audio), automaticallyConfiguresApplicationAudioSession: false)
     
         rtmpStream.captureSettings = [
             "fps": 30, // FPS
-            "sessionPreset": AVCaptureSessionPreset1280x720, // input video width/height
+            "sessionPreset": AVCaptureSession.Preset.hd1280x720, // input video width/height
             "continuousAutofocus": false, // use camera autofocus mode
             "continuousExposure": false, //  use camera exposure mode
         ]
@@ -128,26 +140,20 @@ final class LiveViewController: JSQMessagesViewController {
         publishButton.addTarget(self, action: #selector(LiveViewController.on(publish:)), for: .touchUpInside)
         pauseButton.addTarget(self, action: #selector(LiveViewController.on(pause:)), for: .touchUpInside)
     
-    
         lfView.attachStream(rtmpStream)
     
         view.addSubview(lfView)
         view.addSubview(pauseButton)
         view.addSubview(publishButton)
-    
-
     }
     
-    
     private func chatInitialSettings(){
-        
         // キーボードのジェスチャー登録.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
         
         //Room参加
         SocketIOManager.sharedInstance.joinRoom(self.streamName)
-        
         
         // Node.jsからのメッセージをブロードキャストし、画面にそれを表示。
         SocketIOManager.sharedInstance.getChatMessage {
@@ -167,7 +173,6 @@ final class LiveViewController: JSQMessagesViewController {
     }
     
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
-        
         // 新しいメッセージデータを追加する.
         let message = JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text)
         self.messages.append(message)
@@ -207,12 +212,9 @@ final class LiveViewController: JSQMessagesViewController {
         
         if messages[indexPath.item].senderId != self.senderId() {
             incomingAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: messages[indexPath.row].senderDisplayName, backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
-            
             return incomingAvatar
         }
-        
         return nil
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -231,16 +233,17 @@ final class LiveViewController: JSQMessagesViewController {
         return "test"
     }
     
-    func on(pause:UIButton) {
+    @objc func on(pause:UIButton) {
         rtmpStream.togglePause()
     }
     
-    func on(publish:UIButton) {
+    @objc func on(publish:UIButton) {
         if (publish.isSelected) {
             UIApplication.shared.isIdleTimerDisabled = false
             rtmpConnection.close()
             rtmpConnection.removeEventListener(Event.RTMP_STATUS, selector:#selector(LiveViewController.rtmpStatusHandler(_:)), observer: self)
             publish.setTitle("●", for: UIControlState())
+            
         } else {
             UIApplication.shared.isIdleTimerDisabled = true
             rtmpConnection.addEventListener(Event.RTMP_STATUS, selector:#selector(LiveViewController.rtmpStatusHandler(_:)), observer: self)
@@ -251,7 +254,7 @@ final class LiveViewController: JSQMessagesViewController {
         publish.isSelected = !publish.isSelected
     }
     
-    func rtmpStatusHandler(_ notification:Notification) {
+    @objc func rtmpStatusHandler(_ notification:Notification) {
         let e:Event = Event.from(notification)
         if let data:ASObject = e.data as? ASObject , let code:String = data["code"] as? String {
             switch code {
@@ -264,9 +267,17 @@ final class LiveViewController: JSQMessagesViewController {
     }
     
     //streamNameを取得
-    func setStreamName() {
+    func setStreamName()
+    {
+        let parameters = [
+            "user_id": self.userId,
+            "category_id": "1",
+            "program_name": self.programName,
+            "program_detail": self.programDtail
+        ]
+        
         let listUrl = "http://153.126.157.154:83/api/registerBcastInfo.php";
-            Alamofire.request(listUrl).responseJSON{ response in
+        Alamofire.request(listUrl, method: .post, parameters: parameters).responseJSON{ response in
                 guard let object = response.result.value else {
                     return
                 }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import lf
+import HaishinKit
 import AVFoundation
 import SwiftyJSON
 import Alamofire
@@ -108,12 +108,12 @@ class ListeningViewController: JSQMessagesViewController {
         
         rtmpStream = RTMPStream(connection: rtmpConnection)
         rtmpStream.syncOrientation = true
-        rtmpStream.attachAudio(AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio), automaticallyConfiguresApplicationAudioSession: false)
+        rtmpStream.attachAudio(AVCaptureDevice.default(for: AVMediaType.audio), automaticallyConfiguresApplicationAudioSession: false)
         
         
         rtmpStream.captureSettings = [
             "fps": 30, // FPS
-            "sessionPreset": AVCaptureSessionPreset1280x720, // input video width/height
+            "sessionPreset": AVCaptureSession.Preset.hd1280x720, // input video width/height
             "continuousAutofocus": false, // use camera autofocus mode
             "continuousExposure": false, //  use camera exposure mode
         ]
@@ -249,7 +249,7 @@ class ListeningViewController: JSQMessagesViewController {
         publish.isSelected = !publish.isSelected
     }
     
-    func rtmpStatusHandler(_ notification:Notification) {
+    @objc func rtmpStatusHandler(_ notification:Notification) {
         let e:Event = Event.from(notification)
         if let data:ASObject = e.data as? ASObject , let code:String = data["code"] as? String {
             switch code {

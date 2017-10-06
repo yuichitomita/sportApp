@@ -194,7 +194,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="no_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="RbK-A5-U0z">
-                                                        <rect key="frame" x="130" y="33" width="114" height="125"/>
+                                                        <rect key="frame" x="90" y="33" width="154" height="154"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4km-P7-f6Q">
@@ -543,7 +543,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gq5-y3-x2x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5489" y="526"/>
+            <point key="canvasLocation" x="5488.8000000000002" y="525.33733133433293"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="gmr-70-HZe">

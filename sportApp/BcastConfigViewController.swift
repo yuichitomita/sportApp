@@ -17,6 +17,8 @@ class BcastConfigViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet var tagView: UIView!
    
     var txtActiveField = UITextField()
+    var programName = ""
+    var programDetail = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +26,10 @@ class BcastConfigViewController: UIViewController ,UITextFieldDelegate{
         programNameTxtField.delegate = self
         programDetailTxtField.delegate = self
         tagTxtField.delegate = self
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-   
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,9 +56,20 @@ class BcastConfigViewController: UIViewController ,UITextFieldDelegate{
         notificationCenter.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == programNameTxtField {
+            programName = programNameTxtField.text!
+        }
+        if textField == programDetailTxtField {
+            programDetail = programDetailTxtField.text!
+        }
+        
+        let userDefaults = UserDefaults.standard
+        
+        userDefaults.set(programName, forKey: "programName")
+        userDefaults.set(programDetail, forKey: "programDtail")
+        userDefaults.synchronize()
+        
         self.view.endEditing(true)
         
         return false
@@ -69,26 +80,22 @@ class BcastConfigViewController: UIViewController ,UITextFieldDelegate{
         return true
     }
     
-    func handleKeyboardWillShowNotification(notification: NSNotification) {
-     
+    @objc func handleKeyboardWillShowNotification(notification: NSNotification) {
         let userInfo = notification.userInfo!
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let myBoundSize: CGSize = UIScreen.main.bounds.size
         let txtLimit = txtActiveField.frame.origin.y + txtActiveField.frame.height + 8.0
         let kbdLimit = myBoundSize.height - keyboardScreenEndFrame.size.height
         
-        
         if txtLimit >= kbdLimit {
             scrollView.contentOffset.y = txtLimit - kbdLimit
         }else {
             scrollView.contentOffset.y = (txtLimit + self.tagView.frame.origin.y) - kbdLimit
         }
-        
     }
     
-    func handleKeyboardWillHideNotification(notification: NSNotification) {
+    @objc func handleKeyboardWillHideNotification(notification: NSNotification) {
         self.scrollView.contentOffset.y = 0
     }
-
 
 }

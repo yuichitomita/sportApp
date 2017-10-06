@@ -12,25 +12,19 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     func slideMenuItemSelectedAtIndex(_ index: Int32) {
         switch(index){
         case 0:
-            
             self.openViewControllerBasedOnIdentifier("New")
-            
             break
         case 1:
-            
             self.openViewControllerBasedOnIdentifier("New")
-            
             break
         default:
             print("default\n", terminator: "")
@@ -39,11 +33,9 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
     
     func openViewControllerBasedOnIdentifier(_ strIdentifier:String){
         let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: strIdentifier)
-        
         let topViewController : UIViewController = self.navigationController!.topViewController!
         
         if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
-            print("Same VC")
         } else {
             self.navigationController!.pushViewController(destViewController, animated: true)
         }
@@ -80,10 +72,9 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
         return defaultMenuImage;
     }
     
-    func onSlideMenuButtonPressed(_ sender : UIButton){
+    @objc func onSlideMenuButtonPressed(_ sender : UIButton){
         if (sender.tag == 10)
         {
-        
             self.slideMenuItemSelectedAtIndex(-1);
             
             sender.tag = 0;
@@ -99,7 +90,7 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
                 }, completion: { (finished) -> Void in
                     viewMenuBack.removeFromSuperview()
             })
-            
+
             return
         }
         
@@ -112,7 +103,6 @@ class BaseViewController: UIViewController, SlideMenuDeligate {
         self.view.addSubview(menuVC.view)
         self.addChildViewController(menuVC)
         menuVC.view.layoutIfNeeded()
-        
         
         menuVC.view.frame=CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
         

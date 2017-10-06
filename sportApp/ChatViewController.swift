@@ -55,7 +55,7 @@ class ChatViewController: JSQMessagesViewController {
         self.collectionView!.collectionViewLayout.outgoingAvatarViewSize = .zero
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
     

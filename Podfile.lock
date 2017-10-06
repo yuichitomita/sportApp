@@ -1,28 +1,79 @@
 PODS:
-  - DrawerController (3.0.0):
-    - DrawerController/Core (= 3.0.0)
-    - DrawerController/DrawerVisualStates (= 3.0.0)
-  - DrawerController/Core (3.0.0)
-  - DrawerController/DrawerVisualStates (3.0.0):
+  - Alamofire (4.5.1)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - DrawerController (4.0.0):
+    - DrawerController/Core (= 4.0.0)
+    - DrawerController/DrawerVisualStates (= 4.0.0)
+  - DrawerController/Core (4.0.0)
+  - DrawerController/DrawerVisualStates (4.0.0):
     - DrawerController/Core
-  - lf (0.5.1):
-    - XCGLogger (~> 4.0.0)
-  - PagingMenuController (2.0.0)
-  - XCGLogger (4.0.0):
-    - XCGLogger/Core (= 4.0.0)
-  - XCGLogger/Core (4.0.0)
+  - FacebookCore (0.2.0):
+    - Bolts (~> 1.8)
+    - FBSDKCoreKit (~> 4.15)
+  - FacebookLogin (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.15)
+    - FBSDKLoginKit (~> 4.15)
+  - FBSDKCoreKit (4.27.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.27.0):
+    - FBSDKCoreKit
+  - HaishinKit (0.8.1):
+    - Logboard (~> 1.1.1)
+  - JSQMessagesViewController (7.3.4)
+  - Logboard (1.1.1)
+  - PagingMenuController (2.2.0)
+  - SnapKit (4.0.0)
+  - Socket.IO-Client-Swift (12.1.2):
+    - Starscream (~> 2.1.1)
+  - Starscream (2.1.1)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - DrawerController
-  - lf
+  - FacebookCore
+  - FacebookLogin
+  - HaishinKit
+  - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`, branch `develop`)
   - PagingMenuController
+  - SnapKit (~> 4.0)
+  - Socket.IO-Client-Swift
+  - SwiftyJSON
+
+EXTERNAL SOURCES:
+  JSQMessagesViewController:
+    :branch: develop
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
+
+CHECKOUT OPTIONS:
+  JSQMessagesViewController:
+    :commit: 8f73f61b334356a7c3c728af065d1ec83ea242f4
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
 
 SPEC CHECKSUMS:
-  DrawerController: 5e859c5dbeae3cea20981eb5ff2aa16eb946dff9
-  lf: 40f2c7f60f1c1250334b55c097ca75f837efd5fa
-  PagingMenuController: 60602bfb5421d6536c1e3097baeed601dec1d85b
-  XCGLogger: 38063ea89b4c8b23232d18efd2e12eb0005f3ea4
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  DrawerController: bad219f1535b1ff71f06ceb0f9d4339751b60af4
+  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
+  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
+  FBSDKCoreKit: ebc6c5f5b3f0e72396041050e2266781a38ac587
+  FBSDKLoginKit: 887be4b7452e1c5a3cc4485ce152529965a0c41e
+  HaishinKit: 23c47ecfcc605b359800fb692f1d786e0260f4b2
+  JSQMessagesViewController: c11b9e77372ab72c45c67311f6da7342e32df1e8
+  Logboard: dddb095194bab097d8e3a692624433bb949d19ac
+  PagingMenuController: 6176618987bb170096664f2da097313e45ed9c31
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Socket.IO-Client-Swift: ba3cb1c4bf0a6ca90080406a2c22685c25ad1f60
+  Starscream: 142bd8ef24592d985daee9fa48c936070b85b15f
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 12251e63e62e2862dd256ba24a7ace64f351180a
+PODFILE CHECKSUM: 4708450889eebf24c7c1e23d09a187491fb4fef7
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1
